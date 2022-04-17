@@ -3,8 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>
-			{% block title %}Welcome!
-			{% endblock %}
+			{% block title 'Araba market'%}
 		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link
@@ -12,13 +11,32 @@
 		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('app') }}
+			<!-- CSS
+																																										    ========================= -->
+			<link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
+			<link rel="stylesheet" href="assets/css/slick.css">
+			<link rel="stylesheet" href="assets/css/simple-line-icons.css">
+			<link rel="stylesheet" href="assets/css/ionicons.min.css">
+			<link rel="stylesheet" href="assets/css/font.awesome.css">
+			<link rel="stylesheet" href="assets/css/animate.css">
+			<link rel="stylesheet" href="assets/css/nice-select.css">
+			<link rel="stylesheet" href="assets/css/jquery-ui.min.css">
+			<link
+			rel="stylesheet" href="assets/css/magnific-popup.css">
+			<!-- Main Style CSS -->
+			<link rel="stylesheet" href="assets/css/style.css">
 		{% endblock %}
 
 		{% block javascripts %}
 			{{ encore_entry_script_tags('app') }}
+			<script src="assets/js/vendor/modernizr-3.7.1.min.js"></script>
 		{% endblock %}
 	</head>
 	<body>
-		{% block body %}{% endblock %}
+		{{include('layouts/partials/_nav.html.twig')}}
+		<main>
+			{% block body %}{% endblock %}
+		</main>
+		{{include('layouts/partials/_footer.html.twig')}}
 	</body>
 </html>
