@@ -1,6 +1,6 @@
 # Projet
     ---Araba Market
-Un projet de marche en lign 
+Un projet de marche en ligne
 
 ## Environement
 * PHP 8.1.4
