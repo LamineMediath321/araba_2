@@ -19,4 +19,10 @@ class HomeController extends AbstractController
     {
         return $this->render('home/buy.html.twig');
     }
+
+    #[Route('/produit-details', name: 'app_details')]
+    public function produit_details(): Response
+    {
+        return $this->render('home/produit_details.html.twig');
+    }
 }
