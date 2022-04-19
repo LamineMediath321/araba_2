@@ -14,7 +14,7 @@ services:
             - '3306'
     mailer:
         image: schickling/mailcatcher
-        container_name: email
+        container_name: email_catcher
         ports: [ 1025, 1080 ]
 
     phpmyadmin:
