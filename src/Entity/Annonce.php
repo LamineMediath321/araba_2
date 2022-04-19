@@ -41,9 +41,13 @@ class Annonce
     #[ORM\OneToMany(mappedBy: 'annonce', targetEntity: Commentaire::class, orphanRemoval: true)]
     private $commentaires;
 
+    #[ORM\OneToMany(mappedBy: 'article', targetEntity: ImageAnnonce::class, orphanRemoval: true)]
+    private $imageAnnonces;
+
     public function __construct()
     {
         $this->commentaires = new ArrayCollection();
+        $this->imageAnnonces = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -159,6 +163,36 @@ class Annonce
             // set the owning side to null (unless already changed)
             if ($commentaire->getAnnonce() === $this) {
                 $commentaire->setAnnonce(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ImageAnnonce>
+     */
+    public function getImageAnnonces(): Collection
+    {
+        return $this->imageAnnonces;
+    }
+
+    public function addImageAnnonce(ImageAnnonce $imageAnnonce): self
+    {
+        if (!$this->imageAnnonces->contains($imageAnnonce)) {
+            $this->imageAnnonces[] = $imageAnnonce;
+            $imageAnnonce->setArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImageAnnonce(ImageAnnonce $imageAnnonce): self
+    {
+        if ($this->imageAnnonces->removeElement($imageAnnonce)) {
+            // set the owning side to null (unless already changed)
+            if ($imageAnnonce->getArticle() === $this) {
+                $imageAnnonce->setArticle(null);
             }
         }
 

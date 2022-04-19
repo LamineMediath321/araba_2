@@ -25,9 +25,13 @@ class SousCategorie
     #[ORM\OneToMany(mappedBy: 'sousCategorie', targetEntity: Annonce::class)]
     private $annonces;
 
+    #[ORM\OneToMany(mappedBy: 'domaine', targetEntity: SalleExposition::class)]
+    private $salleExpositions;
+
     public function __construct()
     {
         $this->annonces = new ArrayCollection();
+        $this->salleExpositions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -83,6 +87,36 @@ class SousCategorie
             // set the owning side to null (unless already changed)
             if ($annonce->getSousCategorie() === $this) {
                 $annonce->setSousCategorie(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, SalleExposition>
+     */
+    public function getSalleExpositions(): Collection
+    {
+        return $this->salleExpositions;
+    }
+
+    public function addSalleExposition(SalleExposition $salleExposition): self
+    {
+        if (!$this->salleExpositions->contains($salleExposition)) {
+            $this->salleExpositions[] = $salleExposition;
+            $salleExposition->setDomaine($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSalleExposition(SalleExposition $salleExposition): self
+    {
+        if ($this->salleExpositions->removeElement($salleExposition)) {
+            // set the owning side to null (unless already changed)
+            if ($salleExposition->getDomaine() === $this) {
+                $salleExposition->setDomaine(null);
             }
         }
 
