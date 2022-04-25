@@ -14,16 +14,20 @@
 
 		<link rel="canonical" href="https://demo-basic.adminkit.io/"/>
 		{{ encore_entry_link_tags('app') }}
+		{{ encore_entry_link_tags('notyf') }}
 
 
 		<title>AdminKit Demo - Bootstrap 5 Admin Template</title>
-
+		{{ encore_entry_script_tags('app') }}
+		{{ encore_entry_script_tags('notyf') }}
 
 		<link href="assets/css/app.css" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 	</head>
 
 	<body>
+		{{include('layouts/partials/_notyf.html.twig')}}
+
 		<div class="wrapper">
 			{{include('layouts/partials/_sidebar.html.twig')}}
 

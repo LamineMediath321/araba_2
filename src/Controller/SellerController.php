@@ -16,7 +16,7 @@ class SellerController extends AbstractController
         ]);
     }
 
-    #[Route('/profile', name: 'seller_profile')]
+    #[Route('/sellerProfile', name: 'seller_profile')]
     public function profile(): Response
     {
         return $this->render('seller/profile.html.twig', [
@@ -24,7 +24,7 @@ class SellerController extends AbstractController
         ]);
     }
 
-    #[Route('/myannonces', name: 'seller_annonces')]
+    #[Route('/sellerMyannonces', name: 'seller_annonces')]
     public function annonces(): Response
     {
         return $this->render('seller/myannonces.html.twig', [

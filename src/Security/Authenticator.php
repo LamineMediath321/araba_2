@@ -5,6 +5,7 @@ namespace App\Security;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Security;
@@ -50,7 +51,8 @@ class Authenticator extends AbstractLoginFormAuthenticator
         }
 
         // For example:
-        return new RedirectResponse($this->urlGenerator->generate('app_home'));
+        $request->getSession()->getFlashBag()->add('success', "Bienvenue dans votre zone");
+        return new RedirectResponse($this->urlGenerator->generate('seller_index'));
         //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 
