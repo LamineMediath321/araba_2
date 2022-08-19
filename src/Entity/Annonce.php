@@ -6,7 +6,9 @@ use App\Repository\AnnonceRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
+#[UniqueEntity('slug')]
 #[ORM\Entity(repositoryClass: AnnonceRepository::class)]
 class Annonce
 {
@@ -43,6 +45,9 @@ class Annonce
 
     #[ORM\OneToMany(mappedBy: 'article', targetEntity: ImageAnnonce::class, orphanRemoval: true)]
     private $imageAnnonces;
+
+    #[ORM\Column(length: 255, unique: true)]
+    private ?string $slug = null;
 
     public function __construct()
     {
@@ -195,6 +200,18 @@ class Annonce
                 $imageAnnonce->setArticle(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

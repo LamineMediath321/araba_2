@@ -12,24 +12,37 @@
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('app') }}
 			{{ encore_entry_link_tags('notyf') }}
-			<link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
-			<link rel="stylesheet" href="assets/css/slick.css">
-			<link rel="stylesheet" href="assets/css/simple-line-icons.css">
-			<link rel="stylesheet" href="assets/css/ionicons.min.css">
-			<link rel="stylesheet" href="assets/css/font.awesome.css">
-			<link rel="stylesheet" href="assets/css/animate.css">
-			<link rel="stylesheet" href="assets/css/nice-select.css">
-			<link rel="stylesheet" href="assets/css/jquery-ui.min.css">
-			<link
-			rel="stylesheet" href="assets/css/magnific-popup.css">
-			<!-- Main Style CSS -->
-			<link rel="stylesheet" href="assets/css/style.css">
+			<link rel="stylesheet" href="{{asset('assets/css/vendor/bootstrap.min.css')}}">
+			<link rel="stylesheet" href="{{asset('assets/css/slick.css')}}">
+
+			<link rel="stylesheet" href="{{asset('assets/css/simple-line-icons.css')}}">
+			<link rel="stylesheet" href="{{asset('assets/css/ionicons.min.css')}}">
+			<link rel="stylesheet" href="{{asset('assets/css/font.awesome.css')}}">
+			<link rel="stylesheet" href="{{asset('assets/css/animate.css')}}">
+			<link rel="stylesheet" href="{{asset('assets/css/nice-select.css')}}">
+			<link rel="stylesheet" href="{{asset('assets/css/jquery-ui.min.css')}}">
+			<link rel="stylesheet" href="{{asset('assets/css/magnific-popup.css')}}">
+			<link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+
+
 		{% endblock %}
 
 		{% block javascripts %}
 			{{ encore_entry_script_tags('app') }}
 			{{ encore_entry_script_tags('notyf') }}
-			<script src="assets/js/vendor/modernizr-3.7.1.min.js"></script>
+			<script src="{{asset('assets/js/vendor/jquery-3.4.1.min.js')}}"></script>
+			<script src="{{asset('assets/js/vendor/popper.js')}}"></script>
+			<script src="{{asset('assets/js/vendor/bootstrap.min.js')}}"></script>
+			<script src="{{asset('assets/js/slick.min.js')}}"></script>
+			<script src="{{asset('assets/js/wow.min.js')}}"></script>
+			<script src="{{asset('assets/js/jquery.scrollup.min.js')}}"></script>
+			<script src="{{asset('assets/js/images-loaded.min.js')}}"></script>
+			<script src="{{asset('assets/js/isotope.pkgd.min.js')}}"></script>
+			<script src="{{asset('assets/js/jquery.nice-select.js')}}"></script>
+			<script src="{{asset('assets/js/tippy-bundle.umd.js')}}"></script>
+			<script src="{{asset('assets/js/jquery-ui.min.js')}}"></script>
+			<script src="{{asset('assets/js/jquery.magnific-popup.min.js')}}"></script>
+			<script src="{{asset('assets/js/mailchimp-ajax.js')}}"></script>
 		{% endblock %}
 	</head>
 	<body>
