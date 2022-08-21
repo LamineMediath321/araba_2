@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Entity\Traits\Timestampable;
 use App\Repository\CommentaireRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\HasLifecycleCallbacks]
@@ -16,44 +17,21 @@ class Commentaire
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $nom;
-
-    #[ORM\Column(type: 'string', length: 255)]
-    private $email;
-
     #[ORM\ManyToOne(targetEntity: Annonce::class, inversedBy: 'commentaires')]
     #[ORM\JoinColumn(nullable: false)]
     private $annonce;
+
+    #[ORM\ManyToOne(inversedBy: 'commentaires')]
+    private ?User $user = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $content = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getNom(): ?string
-    {
-        return $this->nom;
-    }
-
-    public function setNom(string $nom): self
-    {
-        $this->nom = $nom;
-
-        return $this;
-    }
-
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
-    }
 
     public function getAnnonce(): ?Annonce
     {
@@ -63,6 +41,30 @@ class Commentaire
     public function setAnnonce(?Annonce $annonce): self
     {
         $this->annonce = $annonce;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getContent(): ?string
+    {
+        return $this->content;
+    }
+
+    public function setContent(?string $content): self
+    {
+        $this->content = $content;
 
         return $this;
     }

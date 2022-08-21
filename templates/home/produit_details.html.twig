@@ -469,19 +469,19 @@
 				</div>
 				<div class="product_container row">
 					<div class=" product_slick slick_slider_activation" data-slick='{
-																																																																																																																																														                    "slidesToShow": 4,
-																																																																																																																																														                    "slidesToScroll": 1,
-																																																																																																																																														                    "arrows": true,
-																																																																																																																																														                    "dots": false,
-																																																																																																																																														                    "autoplay": false,
-																																																																																																																																														                    "speed": 300,
-																																																																																																																																														                    "infinite": true,
-																																																																																																																																														                    "responsive":[
-																																																																																																																																														                      {"breakpoint":992, "settings": { "slidesToShow": 3 } },
-																																																																																																																																														                      {"breakpoint":768, "settings": { "slidesToShow": 2 } },
-																																																																																																																																														                      {"breakpoint":300, "settings": { "slidesToShow": 1 } }
-																																																																																																																																														                     ]
-																																																																																																																																														                }'>
+																																																																																																																																																																																								                    "slidesToShow": 4,
+																																																																																																																																																																																								                    "slidesToScroll": 1,
+																																																																																																																																																																																								                    "arrows": true,
+																																																																																																																																																																																								                    "dots": false,
+																																																																																																																																																																																								                    "autoplay": false,
+																																																																																																																																																																																								                    "speed": 300,
+																																																																																																																																																																																								                    "infinite": true,
+																																																																																																																																																																																								                    "responsive":[
+																																																																																																																																																																																								                      {"breakpoint":992, "settings": { "slidesToShow": 3 } },
+																																																																																																																																																																																								                      {"breakpoint":768, "settings": { "slidesToShow": 2 } },
+																																																																																																																																																																																								                      {"breakpoint":300, "settings": { "slidesToShow": 1 } }
+																																																																																																																																																																																								                     ]
+																																																																																																																																																																																								                }'>
 						<div class="col-lg-3">
 							<article class="single_product">
 								<figure>
@@ -1047,7 +1047,20 @@
 	</div>
 	<!-- modal area end-->
 
-
-	<script src="assets/js/main.js"></script>
+	{% block javascripts %}
+		<script src="{{asset('assets/js/vendor/jquery-3.4.1.min.js')}}"></script>
+		<script src="{{asset('assets/js/vendor/popper.js')}}"></script>
+		<script src="{{asset('assets/js/vendor/bootstrap.min.js')}}"></script>
+		<script src="{{asset('assets/js/slick.min.js')}}"></script>
+		<script src="{{asset('assets/js/wow.min.js')}}"></script>
+		<script src="{{asset('assets/js/jquery.scrollup.min.js')}}"></script>
+		<script src="{{asset('assets/js/images-loaded.min.js')}}"></script>
+		<script src="{#{asset('assets/js/isotope.pkgd.min.js')}#}"></script>
+		<script src="{{asset('assets/js/jquery.nice-select.js')}}"></script>
+		<script src="{{asset('assets/js/tippy-bundle.umd.js')}}"></script>
+		<script src="{{asset('assets/js/jquery-ui.min.js')}}"></script>
+		<script src="{{asset('assets/js/jquery.magnific-popup.min.js')}}"></script>
+		<script src="{{asset('assets/js/main.js')}}"></script>
+	{% endblock %}
 
 {% endblock %}

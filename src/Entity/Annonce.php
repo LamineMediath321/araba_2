@@ -26,9 +26,6 @@ class Annonce
     #[ORM\Column(type: 'text', nullable: true)]
     private $description;
 
-    #[ORM\Column(type: 'text')]
-    private $lieuDeVente;
-
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $prix;
 
@@ -49,8 +46,22 @@ class Annonce
     #[ORM\OneToMany(mappedBy: 'article', targetEntity: ImageAnnonce::class, orphanRemoval: true)]
     private $imageAnnonces;
 
+    #[ORM\Column(options: ['default' => false])]
+    private ?bool $isUptodate = null;
+
     #[ORM\Column(length: 255, unique: true)]
     private ?string $slug = null;
+
+    #[ORM\Column(options: ['default' => false])]
+    private ?bool $isPaye = null;
+
+    #[ORM\Column(options: ['default' => false])]
+    private ?bool $isCime = null;
+
+    #[ORM\ManyToOne(inversedBy: 'annonces')]
+    private ?Adresse $adresse = null;
+
+
 
 
 
@@ -85,18 +96,6 @@ class Annonce
     public function setDescription(?string $description): self
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function getLieuDeVente(): ?string
-    {
-        return $this->lieuDeVente;
-    }
-
-    public function setLieuDeVente(string $lieuDeVente): self
-    {
-        $this->lieuDeVente = $lieuDeVente;
 
         return $this;
     }
@@ -209,6 +208,18 @@ class Annonce
         return $this;
     }
 
+    public function isIsUptodate(): ?bool
+    {
+        return $this->isUptodate;
+    }
+
+    public function setIsUptodate(bool $isUptodate): self
+    {
+        $this->isUptodate = $isUptodate;
+
+        return $this;
+    }
+
     public function getSlug(): ?string
     {
         return $this->slug;
@@ -221,26 +232,38 @@ class Annonce
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function isIsPaye(): ?bool
     {
-        return $this->createdAt;
+        return $this->isPaye;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    public function setIsPaye(bool $isPaye): self
     {
-        $this->createdAt = $createdAt;
+        $this->isPaye = $isPaye;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeImmutable
+    public function isIsCime(): ?bool
     {
-        return $this->updatedAt;
+        return $this->isCime;
     }
 
-    public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
+    public function setIsCime(bool $isCime): self
     {
-        $this->updatedAt = $updatedAt;
+        $this->isCime = $isCime;
+
+        return $this;
+    }
+
+    public function getAdresse(): ?Adresse
+    {
+        return $this->adresse;
+    }
+
+    public function setAdresse(?Adresse $adresse): self
+    {
+        $this->adresse = $adresse;
 
         return $this;
     }

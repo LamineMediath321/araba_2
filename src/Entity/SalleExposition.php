@@ -32,8 +32,8 @@ class SalleExposition
     #[ORM\JoinColumn(nullable: false)]
     private $owner;
 
-    #[ORM\Column(type: 'text', nullable: true)]
-    private $addresseSalle;
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?Adresse $adresse = null;
 
     public function getId(): ?int
     {
@@ -100,14 +100,14 @@ class SalleExposition
         return $this;
     }
 
-    public function getAddresseSalle(): ?string
+    public function getAdresse(): ?Adresse
     {
-        return $this->addresseSalle;
+        return $this->adresse;
     }
 
-    public function setAddresseSalle(?string $addresseSalle): self
+    public function setAdresse(?Adresse $adresse): self
     {
-        $this->addresseSalle = $addresseSalle;
+        $this->adresse = $adresse;
 
         return $this;
     }

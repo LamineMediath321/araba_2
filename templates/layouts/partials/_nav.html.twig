@@ -15,7 +15,7 @@
 							<li class="text-white">
 								<i class="icons icon-phone"></i>
 								<a href="tel:+05483716566">+054
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															                                        8371 65 66</a>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																                                        8371 65 66</a>
 							</li>
 							<li class="text-white">
 								<i class="icon-envelope-letter icons"></i>
@@ -114,8 +114,8 @@
 							</a>
 						</li>
 						<li class="menu-item-has-children">
-							<a class="text-danger" href="#">Devenez vendeuse|eur
-								<i class="fa-solid fa-down-left-and-up-right-to-center"></i>
+							<a class="text-danger" href="#">Publier une annonce
+								<i class="fa-solid fa-person-sign"></i>
 							</a>
 
 						</li>
@@ -337,55 +337,61 @@
 
 				</li>
 				<li>
-					<a class="btn btn-danger text-white" href="{{path('app_login')}}">
-						<i class="fa-solid fa-down-left-and-up-right-to-center"></i>
-						{% if app.user %}
-							Ma zone
-						{% else %}
-							Devenez vendeuse|eur
-							{% endif%}
-						</a>
-					</li>
+					<a class="btn btn-danger text-white" href="#">
+						<i class="fa-solid fa-bullhorn"></i>
+						Publier une annonce
+					</a>
 				</li>
-			</ul>
-		</nav>
-	</div>
-	<div class="header_account">
-		<ul class="d-flex">
-			<li class="header_search">
-				<a href="#">
-					<i class="icon-magnifier icons"></i>
-				</a>
-			</li>
-			<li class="account_link">
-				<a href="#">
-					<i class="icon-user icons"></i>
-				</a>
-				<ul class="dropdown_account_link">
-					<li>
-						<a href="#">My Account</a>
-					</li>
-					<li>
-						<a href="#">Login</a>
-					</li>
-					<li>
-						<a href="#">Contact</a>
-					</li>
-				</ul>
-			</li>
-			<li>
-				<a href="#">
-					<i class="icon-heart icons"></i>
-				</a>
-				<span class="item_count">2</span>
-			</li>
-			<li class="shopping_cart">
-				<a href="#">
-					<i class="icon-basket-loaded icons"></i>
-				</a>
-				<span class="item_count">2</span>
 			</li>
 		</ul>
-	</div>
-</div></div></div></div></div><div class="page_search_box"><div class="search_close"><i class="ion-close-round"></i></div><div class="modal-body"><h1 class="text-center display-1 mb-5"><i class="fa-brands fa-adn"></i><p class="align-baseline fs-3">Araba</p></h1><form class="border-bottom" action="#"><input class="border-0" placeholder="Chercher ..." type="text"><button type="submit">
-<span class="icon-magnifier icons"></span></button></form></div></div></header>
+	</nav>
+</div>
+<div class="header_account">
+	<ul class="d-flex">
+		<li class="header_search">
+			<a href="#">
+				<i class="icon-magnifier icons"></i>
+			</a>
+		</li>
+		<li class="account_link">
+			<a href="#">
+				<i class="fa-solid fa-user"></i>
+			</a>
+			<ul class="dropdown_account_link">
+				{% if app.user %}
+					<li>
+						<a href="#">
+							<i class="fa-solid fa-chalkboard-user"></i>
+							{{app.user.getFullname()}}
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fa-solid fa-right-from-bracket"></i>
+							Se déconnecter
+						</a>
+					</li>
+				{% else %}
+					<li>
+						<a href="{{path('app_login')}}">
+							<i class="fa-solid fa-right-to-bracket"></i>
+							Se connecter
+						</a>
+					</li>
+				{% endif %}
+			</ul>
+		</li>
+		<li>
+			<a data-tippy="Mes favoris" href="#" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="bottom">
+				<i class="icon-heart icons"></i>
+			</a>
+			<span class="item_count">2</span>
+		</li>
+		<li class="shopping_cart">
+			<a data-tippy="Mes pieces" href="#" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="bottom">
+				<i class="fa-solid fa-coins"></i>
+			</a>
+			<span class="item_count">0</span>
+		</li>
+	</ul>
+</div></div></div></div></div></div><div class="page_search_box"><div class="search_close"><i class="ion-close-round"></i></div><div class="modal-body"><h1 class="text-center display-1 mb-5"><i class="fa-brands fa-adn"></i><p class="align-baseline fs-3">Araba</p></h1><form class="border-bottom" action="#"><input class="border-0" placeholder="Chercher ..." type="text"><button type="submit"><span class="icon-magnifier icons"></span></button></form></div></div></header>
