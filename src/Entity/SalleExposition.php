@@ -32,8 +32,8 @@ class SalleExposition
     #[ORM\JoinColumn(nullable: false)]
     private $owner;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Adresse $adresse = null;
+    #[ORM\OneToOne(mappedBy: 'salle', cascade: ['persist', 'remove'])]
+    private ?AdresseSalle $adresseSalle = null;
 
     public function getId(): ?int
     {
@@ -100,14 +100,24 @@ class SalleExposition
         return $this;
     }
 
-    public function getAdresse(): ?Adresse
+    public function getAdresseSalle(): ?AdresseSalle
     {
-        return $this->adresse;
+        return $this->adresseSalle;
     }
 
-    public function setAdresse(?Adresse $adresse): self
+    public function setAdresseSalle(?AdresseSalle $adresseSalle): self
     {
-        $this->adresse = $adresse;
+        // unset the owning side of the relation if necessary
+        if ($adresseSalle === null && $this->adresseSalle !== null) {
+            $this->adresseSalle->setSalle(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($adresseSalle !== null && $adresseSalle->getSalle() !== $this) {
+            $adresseSalle->setSalle($this);
+        }
+
+        $this->adresseSalle = $adresseSalle;
 
         return $this;
     }

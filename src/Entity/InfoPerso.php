@@ -21,6 +21,9 @@ class InfoPerso
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $whatsapp = null;
 
+    #[ORM\OneToOne(inversedBy: 'infoPerso', cascade: ['persist', 'remove'])]
+    private ?User $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -46,6 +49,18 @@ class InfoPerso
     public function setWhatsapp(?string $whatsapp): self
     {
         $this->whatsapp = $whatsapp;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

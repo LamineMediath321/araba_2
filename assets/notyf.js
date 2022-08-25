@@ -3,10 +3,10 @@ import 'notyf/notyf.min.css';
 
 // Create an instance of Notyf
 const notyf = new Notyf({
-    duration: 5000,
+    duration: 6000,
     position: {
         x: 'right',
-        y: 'top',
+        y: 'bottom',
     },
     types: [
         {
@@ -31,6 +31,8 @@ messages.forEach(message => {
 
     if (message.className === 'error') {
         notyf.error(message.innerHTML);
+        notyf.position.x = 'left';
+        notyf.position.y = 'top';
     }
 
     if (message.className === 'info') {

@@ -124,6 +124,9 @@ a:hover {
   text-decoration: none;
 }
 
+
+
+
 button,
 input[type="submit"] {
   cursor: pointer;
@@ -2439,6 +2442,12 @@ textarea:-ms-input-placeholder {
   border: 0;
   font-weight: 600;
 }
+
+.btn-danger {
+  background: #f53400;
+}
+
+
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .btn-primary {

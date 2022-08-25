@@ -3,13 +3,12 @@
 namespace App\Entity;
 
 use App\Entity\Traits\Timestampable;
-use App\Repository\AdresseRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Repository\AdresseUserRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: AdresseRepository::class)]
-class Adresse
+#[ORM\HasLifecycleCallbacks]
+#[ORM\Entity(repositoryClass: AdresseUserRepository::class)]
+class AdresseUser
 {
     use Timestampable;
     #[ORM\Id]
@@ -26,13 +25,8 @@ class Adresse
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $details = null;
 
-    #[ORM\OneToMany(mappedBy: 'adresse', targetEntity: Annonce::class)]
-    private Collection $annonces;
-
-    public function __construct()
-    {
-        $this->annonces = new ArrayCollection();
-    }
+    #[ORM\OneToOne(inversedBy: 'adresseUser', cascade: ['persist', 'remove'])]
+    private ?User $user = null;
 
     public function getId(): ?int
     {
@@ -75,32 +69,14 @@ class Adresse
         return $this;
     }
 
-    /**
-     * @return Collection<int, Annonce>
-     */
-    public function getAnnonces(): Collection
+    public function getUser(): ?User
     {
-        return $this->annonces;
+        return $this->user;
     }
 
-    public function addAnnonce(Annonce $annonce): self
+    public function setUser(?User $user): self
     {
-        if (!$this->annonces->contains($annonce)) {
-            $this->annonces->add($annonce);
-            $annonce->setAdresse($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAnnonce(Annonce $annonce): self
-    {
-        if ($this->annonces->removeElement($annonce)) {
-            // set the owning side to null (unless already changed)
-            if ($annonce->getAdresse() === $this) {
-                $annonce->setAdresse(null);
-            }
-        }
+        $this->user = $user;
 
         return $this;
     }

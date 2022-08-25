@@ -3,10 +3,11 @@
 namespace App\Repository;
 
 use App\Entity\Annonce;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\OptimisticLockException;
+use App\Entity\SousCategorie;
 use Doctrine\ORM\ORMException;
+use Doctrine\ORM\OptimisticLockException;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Annonce|null find($id, $lockMode = null, $lockVersion = null)
@@ -48,19 +49,83 @@ class AnnonceRepository extends ServiceEntityRepository
     // /**
     //  * @return Annonce[] Returns an array of Annonce objects
     //  */
-    /*
-    public function findByExampleField($value)
+
+    //POur les Categirie Top annonces
+    public function findByCategorieCime($libelle)
+    {
+        //Le limmite à 10 pourrais changer
+        $query = $this->createQueryBuilder('a');
+        $query->leftJoin('a.sousCategorie', 's');
+        $query->leftJoin('s.categorie', 'c');
+        $query->andWhere('c.libelle = :libelle');
+        $query->andWhere('a.isPaye = true');
+        $query->andWhere('a.isCime = true');
+        $query->andWhere('a.isVendu = false');
+        $query->andWhere('a.isUptodate = true');
+        $query->setParameter('libelle', $libelle);
+        $query->setMaxResults(10);
+
+        return $query->getQuery()->getResult();
+    }
+
+    //POur les Annonces par sousCategorie
+    public function findBySousCategorie($slug)
+    {
+        //Le limmite à 10 pourrais changer
+        $query = $this->createQueryBuilder('a');
+        $query->andWhere('a.isPaye = true');
+        $query->andWhere('a.isVendu = false');
+        $query->andWhere('a.isUptodate = true');
+        $query->leftJoin('a.sousCategorie', 's');
+        $query->andWhere('s.slug = :slug');
+        $query->setParameter('slug', $slug);
+
+        return $query->getQuery()->getResult();
+    }
+
+    public function findAllCategorieCime()
+    {
+        //Le limmite à 10 pourrais changer
+        $query = $this->createQueryBuilder('a');
+        $query->andWhere('a.isPaye = true');
+        $query->andWhere('a.isCime = true');
+        $query->andWhere('a.isVendu = false');
+        $query->andWhere('a.isUptodate = true');
+        $query->orderBy('a.createdAt', 'DESC');
+        $query->setMaxResults(10);
+
+        return $query->getQuery()->getResult();
+    }
+
+    //Les dernieres annonces
+    public function findAllAnnonces()
+    {
+        //Le limmite à 10 pourrais changer
+        $query = $this->createQueryBuilder('a');
+        $query->andWhere('a.isPaye = true');
+        $query->andWhere('a.isVendu = false');
+        $query->andWhere('a.isUptodate = true');
+        $query->orderBy('a.createdAt', 'DESC');
+        $query->setMaxResults(12);
+
+        return $query->getQuery()->getResult();
+    }
+
+
+    //Pour les annonces similaires
+    public function findBySimilaire(SousCategorie $sousCategorie, int $id)
     {
         return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
+            ->andWhere('a.sousCategorie = :sousCategorie')
+            ->setParameter('sousCategorie', $sousCategorie)
+            ->andWhere('a.id != :id')
+            ->setParameter('id', $id)
+            ->orderBy('a.createdAt', 'DESC')
             ->setMaxResults(10)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
-    */
+
 
     /*
     public function findOneBySomeField($value): ?Annonce

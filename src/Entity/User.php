@@ -13,9 +13,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+#[ORM\HasLifecycleCallbacks]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
-    use Timestampable;
+    //use Timestampable;
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
@@ -45,11 +46,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Commentaire::class)]
     private Collection $commentaires;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Adresse $adresse = null;
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?AdresseUser $adresseUser = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?InfoPerso $contacts = null;
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?InfoPerso $infoPerso = null;
 
     public function __construct()
     {
@@ -227,26 +228,46 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getAdresse(): ?Adresse
+    public function getAdresseUser(): ?AdresseUser
     {
-        return $this->adresse;
+        return $this->adresseUser;
     }
 
-    public function setAdresse(?Adresse $adresse): self
+    public function setAdresseUser(?AdresseUser $adresseUser): self
     {
-        $this->adresse = $adresse;
+        // unset the owning side of the relation if necessary
+        if ($adresseUser === null && $this->adresseUser !== null) {
+            $this->adresseUser->setUser(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($adresseUser !== null && $adresseUser->getUser() !== $this) {
+            $adresseUser->setUser($this);
+        }
+
+        $this->adresseUser = $adresseUser;
 
         return $this;
     }
 
-    public function getContacts(): ?InfoPerso
+    public function getInfoPerso(): ?InfoPerso
     {
-        return $this->contacts;
+        return $this->infoPerso;
     }
 
-    public function setContacts(?InfoPerso $contacts): self
+    public function setInfoPerso(?InfoPerso $infoPerso): self
     {
-        $this->contacts = $contacts;
+        // unset the owning side of the relation if necessary
+        if ($infoPerso === null && $this->infoPerso !== null) {
+            $this->infoPerso->setUser(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($infoPerso !== null && $infoPerso->getUser() !== $this) {
+            $infoPerso->setUser($this);
+        }
+
+        $this->infoPerso = $infoPerso;
 
         return $this;
     }

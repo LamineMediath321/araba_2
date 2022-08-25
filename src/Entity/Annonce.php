@@ -2,12 +2,14 @@
 
 namespace App\Entity;
 
+use Doctrine\DBAL\Types\Types;
+use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\Timestampable;
 use App\Repository\AnnonceRepository;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[UniqueEntity('slug')]
 #[ORM\Entity(repositoryClass: AnnonceRepository::class)]
@@ -46,7 +48,7 @@ class Annonce
     #[ORM\OneToMany(mappedBy: 'article', targetEntity: ImageAnnonce::class, orphanRemoval: true)]
     private $imageAnnonces;
 
-    #[ORM\Column(options: ['default' => false])]
+    #[ORM\Column(options: ['default' => true])]
     private ?bool $isUptodate = null;
 
     #[ORM\Column(length: 255, unique: true)]
@@ -58,10 +60,17 @@ class Annonce
     #[ORM\Column(options: ['default' => false])]
     private ?bool $isCime = null;
 
-    #[ORM\ManyToOne(inversedBy: 'annonces')]
-    private ?Adresse $adresse = null;
+    #[ORM\Column(options: ['default' => false])]
+    private ?bool $isVendu = null;
 
+    #[ORM\OneToOne(mappedBy: 'annonce', cascade: ['persist', 'remove'])]
+    private ?AdresseAnnonce $adresseAnnonce = null;
 
+    #[ORM\Column(options: ['default' => false])]
+    private ?bool $isPro = null;
+
+    #[ORM\Column(type: Types::BIGINT, options: ['default' => 0])]
+    private ?string $nbVus = null;
 
 
 
@@ -256,15 +265,83 @@ class Annonce
         return $this;
     }
 
-    public function getAdresse(): ?Adresse
+
+    public function isIsVendu(): ?bool
     {
-        return $this->adresse;
+        return $this->isVendu;
     }
 
-    public function setAdresse(?Adresse $adresse): self
+    public function setIsVendu(bool $isVendu): self
     {
-        $this->adresse = $adresse;
+        $this->isVendu = $isVendu;
 
         return $this;
+    }
+
+    public function getAdresseAnnonce(): ?AdresseAnnonce
+    {
+        return $this->adresseAnnonce;
+    }
+
+    public function setAdresseAnnonce(?AdresseAnnonce $adresseAnnonce): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($adresseAnnonce === null && $this->adresseAnnonce !== null) {
+            $this->adresseAnnonce->setAnnonce(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($adresseAnnonce !== null && $adresseAnnonce->getAnnonce() !== $this) {
+            $adresseAnnonce->setAnnonce($this);
+        }
+
+        $this->adresseAnnonce = $adresseAnnonce;
+
+        return $this;
+    }
+
+    public function isIsPro(): ?bool
+    {
+        return $this->isPro;
+    }
+
+    public function setIsPro(bool $isPro): self
+    {
+        $this->isPro = $isPro;
+
+        return $this;
+    }
+
+    public function getNbVus(): ?string
+    {
+        return $this->nbVus;
+    }
+
+    public function setNbVus(string $nbVus): self
+    {
+        $this->nbVus = $nbVus;
+
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->libelleAnnonce . '-' . (string)$this->createdAt->format('Y-m-d H:i:s');
+    }
+
+    public function computeSlug(SluggerInterface $slugger)
+    {
+        if (!$this->slug || '-' === $this->slug) {
+            $this->slug = (string) $slugger->slug((string) $this)->lower();
+        }
+    }
+
+    #[ORM\PrePersist]
+    public function enregistrer()
+    {
+
+        if ($this->getCreatedAt() === null) {
+            $this->nbVus = 0;
+        }
     }
 }

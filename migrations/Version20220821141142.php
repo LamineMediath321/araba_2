@@ -21,7 +21,7 @@ final class Version20220821141142 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('ALTER TABLE annonce DROP lieu_de_vente, DROP created_at, DROP updated_at');
-        $this->addSql('ALTER TABLE salle_exposition DROP addresse_salle, DROP created_at, DROP updated_at');
+        $this->addSql('ALTER TABLE salle_exposition DROP addresse_salle');
         $this->addSql('ALTER TABLE user DROP adresse');
     }
 
