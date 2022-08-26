@@ -59,7 +59,7 @@ class AppFixtures extends Fixture
                         ->setLibelle($vehicules[$j]);
                     $manager->persist($sous_categorie);
                     //Les annonces
-                    for ($k = 0; $k < 10; $k++) {
+                    for ($k = 0; $k < 5; $k++) {
                         $annonce = new Annonce;
                         $annonce->setUser($user)
                             ->setSousCategorie($sous_categorie)
@@ -67,7 +67,7 @@ class AppFixtures extends Fixture
                             ->setDescription($faker->paragraph())
                             ->setPrix($faker->randomNumber(3))
                             ->setSlug($faker->slug())
-                            ->setIsCime(true)
+                            ->setIsCime(false)
                             ->setIsPaye(true)
                             ->setIsUptodate(true)
                             ->setIsVendu(false)
@@ -104,7 +104,7 @@ class AppFixtures extends Fixture
                         ->setLibelle($immobiliers[$j]);
                     $manager->persist($sous_categorie);
                     //Les annonces
-                    for ($k = 0; $k < 10; $k++) {
+                    for ($k = 0; $k < 5; $k++) {
                         $annonce = new Annonce;
                         $annonce->setUser($user)
                             ->setSousCategorie($sous_categorie)
@@ -112,7 +112,7 @@ class AppFixtures extends Fixture
                             ->setDescription($faker->paragraph())
                             ->setPrix($faker->randomNumber(3))
                             ->setSlug($faker->slug())
-                            ->setIsCime(true)
+                            ->setIsCime(false)
                             ->setIsPaye(true)
                             ->setIsUptodate(true)
                             ->setIsVendu(false)
@@ -149,7 +149,7 @@ class AppFixtures extends Fixture
                         ->setLibelle($modes[$j]);
                     $manager->persist($sous_categorie);
                     //Les annonces
-                    for ($k = 0; $k < 10; $k++) {
+                    for ($k = 0; $k < 5; $k++) {
                         $annonce = new Annonce;
                         $annonce->setUser($user)
                             ->setSousCategorie($sous_categorie)
@@ -157,7 +157,7 @@ class AppFixtures extends Fixture
                             ->setDescription($faker->paragraph())
                             ->setPrix($faker->randomNumber(3))
                             ->setSlug($faker->slug())
-                            ->setIsCime(true)
+                            ->setIsCime(false)
                             ->setIsPaye(true)
                             ->setIsUptodate(true)
                             ->setIsVendu(false)
@@ -193,7 +193,7 @@ class AppFixtures extends Fixture
                         ->setLibelle($santés[$j]);
                     $manager->persist($sous_categorie);
                     //Les annonces
-                    for ($k = 0; $k < 10; $k++) {
+                    for ($k = 0; $k < 5; $k++) {
                         $annonce = new Annonce;
                         $annonce->setUser($user)
                             ->setSousCategorie($sous_categorie)
@@ -201,7 +201,7 @@ class AppFixtures extends Fixture
                             ->setDescription($faker->paragraph())
                             ->setPrix($faker->randomNumber(4))
                             ->setSlug($faker->slug())
-                            ->setIsCime(true)
+                            ->setIsCime(false)
                             ->setIsPaye(true)
                             ->setIsUptodate(true)
                             ->setIsVendu(false)
@@ -239,7 +239,7 @@ class AppFixtures extends Fixture
                         ->setLibelle($multimédia[$j]);
                     $manager->persist($sous_categorie);
                     //Les annonces
-                    for ($k = 0; $k < 10; $k++) {
+                    for ($k = 0; $k < 5; $k++) {
                         $annonce = new Annonce;
                         $annonce->setUser($user)
                             ->setSousCategorie($sous_categorie)
@@ -247,7 +247,7 @@ class AppFixtures extends Fixture
                             ->setDescription($faker->paragraph())
                             ->setPrix($faker->randomNumber(3))
                             ->setSlug($faker->slug())
-                            ->setIsCime(true)
+                            ->setIsCime(false)
                             ->setIsPaye(true)
                             ->setIsUptodate(true)
                             ->setIsVendu(false)
@@ -274,8 +274,8 @@ class AppFixtures extends Fixture
             if ($i === 5) {
                 //foyer
                 $foyers = [
-                    'Mobilier', 'Electromenager',
-                    'Décoration, linge de maison', 'Vaisselle',
+                    'Mobilier, Décoration', 'Electromenager',
+                    'Linge de maison', 'Vaisselle',
                     'Jardinage, bricolage'
                 ];
                 for ($j = 0; $j < 5; $j++) {
@@ -284,7 +284,7 @@ class AppFixtures extends Fixture
                         ->setLibelle($foyers[$j]);
                     $manager->persist($sous_categorie);
                     //Les annonces
-                    for ($k = 0; $k < 10; $k++) {
+                    for ($k = 0; $k < 5; $k++) {
                         $annonce = new Annonce;
                         $annonce->setUser($user)
                             ->setSousCategorie($sous_categorie)
@@ -292,7 +292,7 @@ class AppFixtures extends Fixture
                             ->setDescription($faker->paragraph())
                             ->setPrix($faker->randomNumber(3))
                             ->setSlug($faker->slug())
-                            ->setIsCime(true)
+                            ->setIsCime(false)
                             ->setIsPaye(true)
                             ->setIsUptodate(true)
                             ->setIsVendu(false)
@@ -328,7 +328,7 @@ class AppFixtures extends Fixture
                         ->setLibelle($sports[$j]);
                     $manager->persist($sous_categorie);
                     //Les annonces
-                    for ($k = 0; $k < 10; $k++) {
+                    for ($k = 0; $k < 5; $k++) {
                         $annonce = new Annonce;
                         $annonce->setUser($user)
                             ->setSousCategorie($sous_categorie)
@@ -336,7 +336,7 @@ class AppFixtures extends Fixture
                             ->setDescription($faker->paragraph())
                             ->setPrix($faker->randomNumber(3))
                             ->setSlug($faker->slug())
-                            ->setIsCime(true)
+                            ->setIsCime(false)
                             ->setIsPaye(true)
                             ->setIsUptodate(true)
                             ->setIsVendu(false)
@@ -372,7 +372,7 @@ class AppFixtures extends Fixture
                         ->setLibelle($emplois[$j]);
                     $manager->persist($sous_categorie);
                     //Les annonces
-                    for ($k = 0; $k < 10; $k++) {
+                    for ($k = 0; $k < 5; $k++) {
                         $annonce = new Annonce;
                         $annonce->setUser($user)
                             ->setSousCategorie($sous_categorie)
@@ -380,7 +380,7 @@ class AppFixtures extends Fixture
                             ->setDescription($faker->paragraph())
                             ->setPrix($faker->randomNumber(3))
                             ->setSlug($faker->slug())
-                            ->setIsCime(true)
+                            ->setIsCime(false)
                             ->setIsPaye(true)
                             ->setIsUptodate(true)
                             ->setIsVendu(false)

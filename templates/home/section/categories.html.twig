@@ -13,11 +13,12 @@
 				<div class="card border-0">
 					<a class="d-block" href="#"><img class="d-block" src="https://via.placeholder.com/340x232/FF8C00/000000" alt="Computers &amp; Accessories"></a>
 					<div class="card-body pb-2">
-						<h2 class="h6 mb-2">{{categorie.libelle}}
+						<h2 class="h6 mb-2">
+							<a href="{{path('app_buy',{'slug':categorie.libelle})}}">{{categorie.libelle}}</a>
 						</h2>
 						<div class="list-group list-group-flush font-size-sm">
 							{% for souscategorie in categorie.sousCategories %}
-								<a class="list-group-item list-group-item-action" href="#">{{souscategorie.libelle}}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right ml-1" style="width: .875rem; height: .875rem;">
+								<a class="list-group-item list-group-item-action" href="{{path('app_buy',{'slug':souscategorie.slug})}}">{{souscategorie.libelle}}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right ml-1" style="width: .875rem; height: .875rem;">
 										<polyline points="9 18 15 12 9 6"></polyline>
 										<span>{{souscategorie.annonces|length}}</span>
 									</svg>

@@ -6,15 +6,19 @@ use App\Entity\Annonce;
 use App\Repository\AnnonceRepository;
 use App\Repository\CategorieRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
-    public function index(CategorieRepository $cateRepo, AnnonceRepository $annoRepo): Response
-    {
+    public function index(
+        CategorieRepository $cateRepo,
+        AnnonceRepository $annoRepo
+    ): Response {
         return $this->render('home/index.html.twig', [
             'categories' => $cateRepo->findAll(),
             'all' => $annoRepo->findAllCategorieCime(),
@@ -26,19 +30,61 @@ class HomeController extends AbstractController
     }
 
     #[Route('/buy/{slug?}', name: 'app_buy')]
-    public function buy(?string $slug, AnnonceRepository $annonRepo): Response
-    {
+    public function buy(
+        ?string $slug,
+        AnnonceRepository $annonRepo,
+        PaginatorInterface $paginator,
+        Request $request
+    ): Response {
         if (!$slug) {
-            $annonces = $annonRepo->findAllAnnonces();
+            $data = $annonRepo->findAllAnnonces();
+        } else {
+            switch ($slug) {
+                case 'Vehicules':
+                    $data = $annonRepo->findByCategorieAll('Vehicules');
+                    break;
+                case 'Immobilier':
+                    $data = $annonRepo->findByCategorieAll('Immobilier');
+                    break;
+                case 'Vetements':
+                    $data = $annonRepo->findByCategorieAll('Vetements');
+                    break;
+                case 'Santé, beauté, cosmétiques':
+                    $data = $annonRepo->findByCategorieAll('Santé, beauté, cosmétiques');
+                    break;
+                case 'Multimédia':
+                    $data = $annonRepo->findByCategorieAll('Multimédia');
+                    break;
+                case 'Foyer':
+                    $data = $annonRepo->findByCategorieAll('Foyer');
+                    break;
+                case 'Sports':
+                    $data = $annonRepo->findByCategorieAll('Sports');
+                    break;
+                case "Offres d'Emploi":
+                    $data = $annonRepo->findByCategorieAll("Offres d'Emploi");
+                    break;
+                default:
+                    $data = $annonRepo->findBySousCategorie($slug);
+                    break;
+            }
         }
+
         return $this->render('home/buy.html.twig', [
-            'annonces' => $annonces
+            'annonces' => $paginator->paginate(
+                $data,
+                $request->query->getInt('page', 1),
+                12
+            )
         ]);
     }
 
     #[Route('/produit-details/{slug}', name: 'app_details')]
-    public function produit_details(Annonce $annonce, EntityManagerInterface $em, AnnonceRepository $annonRepo): Response
-    {
+    public function produit_details(
+        Annonce $annonce,
+        EntityManagerInterface $em,
+        AnnonceRepository $annonRepo
+    ): Response {
         $annonce->setNbVus($annonce->getNbVus() + 1);
         $em->persist($annonce);
         $em->flush();

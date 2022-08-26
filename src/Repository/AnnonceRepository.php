@@ -68,7 +68,23 @@ class AnnonceRepository extends ServiceEntityRepository
         return $query->getQuery()->getResult();
     }
 
-    //POur les Annonces par sousCategorie
+    //Toutes les annonces par categories
+    public function findByCategorieAll($libelle)
+    {
+        //Le limmite à 10 pourrais changer
+        $query = $this->createQueryBuilder('a');
+        $query->leftJoin('a.sousCategorie', 's');
+        $query->leftJoin('s.categorie', 'c');
+        $query->andWhere('c.libelle = :libelle');
+        $query->andWhere('a.isPaye = true');
+        $query->andWhere('a.isCime = true');
+        $query->andWhere('a.isVendu = false');
+        $query->andWhere('a.isUptodate = true');
+        $query->setParameter('libelle', $libelle);
+        return $query->getQuery()->getResult();
+    }
+
+    //Toutes les Annonces par sousCategorie
     public function findBySousCategorie($slug)
     {
         //Le limmite à 10 pourrais changer
@@ -106,7 +122,7 @@ class AnnonceRepository extends ServiceEntityRepository
         $query->andWhere('a.isVendu = false');
         $query->andWhere('a.isUptodate = true');
         $query->orderBy('a.createdAt', 'DESC');
-        $query->setMaxResults(12);
+        // $query->setMaxResults(12);
 
         return $query->getQuery()->getResult();
     }
