@@ -99,6 +99,22 @@ class AnnonceRepository extends ServiceEntityRepository
         return $query->getQuery()->getResult();
     }
 
+    //Toutes les Annonces par sousCategorie
+    public function findBySousCategorieCime($slug)
+    {
+        //Le limmite à 10 pourrais changer
+        $query = $this->createQueryBuilder('a');
+        $query->andWhere('a.isPaye = true');
+        $query->andWhere('a.isVendu = false');
+        $query->andWhere('a.isCime = true');
+        $query->andWhere('a.isUptodate = true');
+        $query->leftJoin('a.sousCategorie', 's');
+        $query->andWhere('s.slug = :slug');
+        $query->setParameter('slug', $slug);
+
+        return $query->getQuery()->getResult();
+    }
+
     public function findAllCategorieCime()
     {
         //Le limmite à 10 pourrais changer

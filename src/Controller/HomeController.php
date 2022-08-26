@@ -34,38 +34,49 @@ class HomeController extends AbstractController
         ?string $slug,
         AnnonceRepository $annonRepo,
         PaginatorInterface $paginator,
-        Request $request
+        Request $request,
+        CategorieRepository $cateRepo
     ): Response {
         if (!$slug) {
             $data = $annonRepo->findAllAnnonces();
+            $tops = $annonRepo->findAllCategorieCime();
         } else {
             switch ($slug) {
                 case 'Vehicules':
                     $data = $annonRepo->findByCategorieAll('Vehicules');
+                    $tops = $annonRepo->findBySousCategorieCime('Vehicules');
                     break;
                 case 'Immobilier':
                     $data = $annonRepo->findByCategorieAll('Immobilier');
+                    $tops = $annonRepo->findBySousCategorieCime('Immobilier');
                     break;
                 case 'Vetements':
                     $data = $annonRepo->findByCategorieAll('Vetements');
+                    $tops = $annonRepo->findBySousCategorieCime('Vetements');
                     break;
                 case 'Santé, beauté, cosmétiques':
                     $data = $annonRepo->findByCategorieAll('Santé, beauté, cosmétiques');
+                    $tops = $annonRepo->findBySousCategorieCime('Santé, beauté, cosmétiques');
                     break;
                 case 'Multimédia':
                     $data = $annonRepo->findByCategorieAll('Multimédia');
+                    $tops = $annonRepo->findBySousCategorieCime('Multimédia');
                     break;
                 case 'Foyer':
                     $data = $annonRepo->findByCategorieAll('Foyer');
+                    $tops = $annonRepo->findBySousCategorieCime('Foyer');
                     break;
                 case 'Sports':
                     $data = $annonRepo->findByCategorieAll('Sports');
+                    $tops = $annonRepo->findBySousCategorieCime('Sports');
                     break;
                 case "Offres d'Emploi":
                     $data = $annonRepo->findByCategorieAll("Offres d'Emploi");
+                    $tops = $annonRepo->findBySousCategorieCime("Offres d'Emploi");
                     break;
                 default:
                     $data = $annonRepo->findBySousCategorie($slug);
+                    $tops = $annonRepo->findBySousCategorieCime($slug);
                     break;
             }
         }
@@ -75,7 +86,9 @@ class HomeController extends AbstractController
                 $data,
                 $request->query->getInt('page', 1),
                 12
-            )
+            ),
+            'categories' => $cateRepo->findAll(),
+            'tops' => $tops
         ]);
     }
 
