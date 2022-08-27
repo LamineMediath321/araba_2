@@ -1,0 +1,53 @@
+<div class="tab-pane fade {% if toggle == 'Tout' %} show active {% endif %}" id="toggle{{toggle}}" role="tabpanel">
+	<div class="product_slick slick_slider_activation" data-slick='{"slidesToShow": 5,  "slidesToScroll": 1, "arrows": true, "dots": false, "autoplay": true,  "speed": 150, "infinite": true,"responsive":[ {"breakpoint":992, "settings": { "slidesToShow": 3 } },{"breakpoint":768, "settings": { "slidesToShow": 2 } }, {"breakpoint":300, "settings": { "slidesToShow": 1 } } ] }'>
+		{% for annonce in annonces %}
+			<article class="col single_product">
+				<figure>
+					<div class="product_thumb">
+						<a href="{{path('app_details',{'slug':annonce.slug})}}">
+							<img class="primary_img" src="{{annonce.imageAnnonces[0].imageName}}" alt="consectetur">
+						</a>
+						<div class="product_action">
+							<ul>
+								{% if annonce.isPro %}
+									<li class="wishlist">
+										<a class='text-danger' data-tippy="Pro" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="left">
+											<i class="fa-solid fa-store"></i>
+										</a>
+									</li>
+								{% endif %}
+								<li class="quick_view">
+									<a data-tippy="Whatsapp" href="https://api.whatsapp.com/send?phone={{annonce.user.infoPerso.whatsapp}}&text=Je suis intéressé par votre annonce {{annonce.libelleAnnonce}} du {{annonce.createdAt|date('d-m-y')}} sur le site Araba market" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="left">
+										<i class="fa fa-whatsapp"></i>
+									</a>
+								</li>
+								<li class="compare">
+									<a data-tippy="Favoris" href="#" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="left">
+										<i class="icon-heart icons"></i>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="product_label">
+							<span>
+								<i class="fa-solid fa-check-double"></i>
+							</span>
+						</div>
+					</div>
+					<figcaption class="product_content text-center">
+						<h4 class="product_name">
+							<a href="{{path('app_details',{'slug':annonce.slug})}}">{{annonce.libelleAnnonce}}</a>
+						</h4>
+						<div class="price_box">
+							<span class="current_price">{{annonce.prix}}</span>
+							<span class="">CFA</span>
+						</div>
+						<div class="add_to_cart">
+							<a class="btn btn-danger" data-tippy="{{annonce.user.infoPerso.telephone}}" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="top">Contactez</a>
+						</div>
+					</figcaption>
+				</figure>
+			</article>
+		{% endfor %}
+	</div>
+</div>

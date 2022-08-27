@@ -24,7 +24,7 @@ class HomeController extends AbstractController
             'all' => $annoRepo->findAllCategorieCime(),
             'immobiliers' => $annoRepo->findByCategorieCime('Immobilier'),
             'vehicules' => $annoRepo->findByCategorieCime('Véhicules'),
-            'modes' => $annoRepo->findByCategorieCime('Mode'),
+            'vetements' => $annoRepo->findByCategorieCime('Vetements'),
             'santes' => $annoRepo->findByCategorieCime('Santé, beauté, cosmétiques'),
         ]);
     }

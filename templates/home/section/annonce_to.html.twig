@@ -8,303 +8,69 @@
 			<div class="product_tab_btn d-flex">
 				<ul class="nav" role="tablist">
 					<li>
-						<a class="active" data-toggle="tab" href="#all2" role="tab" aria-controls="all2" aria-selected="true">
+						<a class="active" data-toggle="tab" href="#toggleTout" role="tab" aria-controls="toggleTout" aria-selected="true">
 							Tout
 						</a>
 					</li>
 					<li>
-						<a data-toggle="tab" href="#clothings2" role="tab" aria-controls="clothings2" aria-selected="false">
+						<a data-toggle="tab" href="#toggleImmobilier" role="tab" aria-controls="toggleImmobilier" aria-selected="false">
 							Immobilier
 						</a>
 					</li>
 					<li>
-						<a data-toggle="tab" href="#bags2" role="tab" aria-controls="bags2" aria-selected="false">
+						<a data-toggle="tab" href="#toggleVehicule" role="tab" aria-controls="toggleVehicule" aria-selected="false">
 							Véhicules
 						</a>
 					</li>
 					<li>
-						<a data-toggle="tab" href="#shoes2" role="tab" aria-controls="shoes2" aria-selected="false">
+						<a data-toggle="tab" href="#toggleVetement" role="tab" aria-controls="toggleVetement" aria-selected="false">
 							Mode
 						</a>
 					</li>
 					<li>
-						<a data-toggle="tab" href="#accessories2" role="tab" aria-controls="accessories2" aria-selected="false">
+						<a data-toggle="tab" href="#toggleSante" role="tab" aria-controls="toggleSante" aria-selected="false">
 							Santé, beauté, cosmétiques
 						</a>
 					</li>
 				</ul>
 				<div class="all_product">
-					<a href="shop.html">les annonces</a>
+					<a href="{{path('app_buy')}}">les annonces</a>
 				</div>
 			</div>
 		</div>
 		<div class="product_container row">
 			<div class="tab-content">
-				<div class="tab-pane fade show active" id="all2" role="tabpanel">
-					<div class="product_slick slick_slider_activation" data-slick='{"slidesToShow": 5,  "slidesToScroll": 1, "arrows": true, "dots": false, "autoplay": true,  "speed": 200, "infinite": true,"responsive":[ {"breakpoint":992, "settings": { "slidesToShow": 3 } },{"breakpoint":768, "settings": { "slidesToShow": 2 } }, {"breakpoint":300, "settings": { "slidesToShow": 1 } } ] }'>
-						{% for annonce in all %}
-							<article class="col single_product">
-								<figure>
-									<div class="product_thumb">
-										<a href="{{path('app_details',{'slug':annonce.slug})}}">
-											<img class="primary_img" src="{{annonce.imageAnnonces[0].imageName}}" alt="consectetur">
-										</a>
-										<div class="product_action">
-											<ul>
-												{% if annonce.isPro %}
-													<li class="wishlist">
-														<a class='text-danger' data-tippy="Pro" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="left">
-															<i class="fa-solid fa-store"></i>
-														</a>
-													</li>
-												{% endif %}
-												<li class="quick_view">
-													<a data-tippy="Whatsapp" href="https://api.whatsapp.com/send?phone={{annonce.user.infoPerso.whatsapp}}&text=Je suis intéressé par votre annonce {{annonce.libelleAnnonce}} du {{annonce.createdAt|date('d-m-y')}} sur le site Araba market">
-														<i class="fa fa-whatsapp"></i>
-													</a>
-												</li>
-												<li class="compare">
-													<a data-tippy="Favoris" href="#" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="left">
-														<i class="icon-heart icons"></i>
-													</a>
-												</li>
-											</ul>
-										</div>
-										<div class="product_label">
-											<span>
-												<i class="fa-solid fa-check-double"></i>
-											</span>
-										</div>
-									</div>
-									<figcaption class="product_content text-center">
-										<h4 class="product_name">
-											<a href="{{path('app_details',{'slug':annonce.slug})}}">{{annonce.libelleAnnonce}}</a>
-										</h4>
-										<div class="price_box">
-											<span class="current_price">{{annonce.prix}}</span>
-											<span class="">CFA</span>
-										</div>
-										<div class="add_to_cart">
-											<a class="btn btn-danger" href="#" data-tippy="{{annonce.user.infoPerso.telephone}}" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="top">Contactez</a>
-										</div>
-									</figcaption>
-								</figure>
-							</article>
-						{% endfor %}
-					</div>
-				</div>
-				<div class="tab-pane fade" id="clothings2" role="tabpanel">
-					<div class="product_slick slick_slider_activation" data-slick='{ "slidesToShow": 5,"slidesToScroll": 1,"arrows": true,"dots": false,"autoplay": false, "speed": 300,"infinite": true,"responsive":[{"breakpoint":992, "settings": { "slidesToShow": 3 } },{"breakpoint":768, "settings": { "slidesToShow": 2 } }, {"breakpoint":300, "settings": { "slidesToShow": 1 } }]}'>
-						{% for immobilier in immobiliers %}
-							<article class="col single_product">
-								<figure>
-									<div class="product_thumb">
-										<a href="{{path('app_details',{'slug':immobilier.slug})}}">
-											<img class="primary_img" src="{{immobilier.imageAnnonces[0].imageName}}" alt="consectetur">
-										</a>
-										<div class="product_action">
-											<ul>
-												{% if immobilier.isPro %}
-													<li class="wishlist">
-														<a class='text-danger' data-tippy="Pro" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="left">
-															<i class="fa-solid fa-store"></i>
-														</a>
-													</li>
-												{% endif %}
-												<li class="quick_view">
-													<a data-tippy="Whatsapp" href="https://api.whatsapp.com/send?phone={{immobilier.user.infoPerso.whatsapp}}&text=Je suis intéressé par votre annonce {{immobilier.libelleAnnonce}} du {{immobilier.createdAt|date('d-m-y')}} sur le site Araba market">
-														<i class="fa fa-whatsapp"></i>
-													</a>
-												</li>
-												<li class="compare">
-													<a data-tippy="Favoris" href="#" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="left">
-														<i class="icon-heart icons"></i>
-													</a>
-												</li>
-											</ul>
-										</div>
-										<div class="product_label">
-											<span>
-												<i class="fa-solid fa-check-double"></i>
-											</span>
-										</div>
-									</div>
-									<figcaption class="product_content text-center">
-										<h4 class="product_name">
-											<a href="{{path('app_details',{'slug':immobilier.slug})}}">{{immobilier.libelleAnnonce}}</a>
-										</h4>
-										<div class="price_box">
-											<span class="current_price">{{immobilier.prix}}</span>
-											<span class="">CFA</span>
-										</div>
-										<div class="add_to_cart">
-											<a class="btn btn-danger" href="#" data-tippy="{{immobilier.user.infoPerso.telephone}}" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="top">Contactez</a>
-										</div>
-									</figcaption>
-								</figure>
-							</article>
-						{% endfor %}
-					</div>
-				</div>
-				<div class="tab-pane fade" id="bags2" role="tabpanel">
-					<div class="product_slick slick_slider_activation" data-slick='{ "slidesToShow": 5,"slidesToScroll": 1,"arrows": true,"dots": false,"autoplay": false, "speed": 300,"infinite": true,"responsive":[{"breakpoint":992, "settings": { "slidesToShow": 3 } },{"breakpoint":768, "settings": { "slidesToShow": 2 } }, {"breakpoint":300, "settings": { "slidesToShow": 1 } }]}'>
-						{% for vehicule in vehicules %}
-							<article class="col single_product">
-								<figure>
-									<div class="product_thumb">
-										<a href="{{path('app_details',{'slug':vehicule.slug})}}">
-											<img class="primary_img" src="{{vehicule.imageAnnonces[0].imageName}}" alt="consectetur">
-										</a>
-										<div class="product_action">
-											<ul>
-												{% if vehicule.isPro %}
-													<li class="wishlist">
-														<a class='text-danger' data-tippy="Pro" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="left">
-															<i class="fa-solid fa-store"></i>
-														</a>
-													</li>
-												{% endif %}
-												<li class="quick_view">
-													<a data-tippy="Whatsapp" href="https://api.whatsapp.com/send?phone={{vehicule.user.infoPerso.whatsapp}}&text=Je suis intéressé par votre annonce {{vehicule.libelleAnnonce}} du {{vehicule.createdAt|date('d-m-y')}} sur le site Araba market">
-														<i class="fa fa-whatsapp"></i>
-													</a>
-												</li>
-												<li class="compare">
-													<a data-tippy="Favoris" href="#" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="left">
-														<i class="icon-heart icons"></i>
-													</a>
-												</li>
-											</ul>
-										</div>
-										<div class="product_label">
-											<span>
-												<i class="fa-solid fa-check-double"></i>
-											</span>
-										</div>
-									</div>
-									<figcaption class="product_content text-center">
-										<h4 class="product_name">
-											<a href="{{path('app_details',{'slug':vehicule.slug})}}">{{vehicule.libelleAnnonce}}</a>
-										</h4>
-										<div class="price_box">
-											<span class="current_price">{{vehicule.prix}}</span>
-											<span class="">CFA</span>
-										</div>
-										<div class="add_to_cart">
-											<a class="btn btn-danger" href="#" data-tippy="{{vehicule.user.infoPerso.telephone}}" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="top">Contactez</a>
-										</div>
-									</figcaption>
-								</figure>
-							</article>
-						{% endfor %}
-					</div>
-				</div>
-				<div class="tab-pane fade" id="shoes2" role="tabpanel">
-					<div class="product_slick slick_slider_activation" data-slick='{ "slidesToShow": 5,"slidesToScroll": 1,"arrows": true,"dots": false,"autoplay": false, "speed": 300,"infinite": true,"responsive":[{"breakpoint":992, "settings": { "slidesToShow": 3 } },{"breakpoint":768, "settings": { "slidesToShow": 2 } }, {"breakpoint":300, "settings": { "slidesToShow": 1 } }]}'>
-						{% for mode in modes %}
-							<article class="col single_product">
-								<figure>
-									<div class="product_thumb">
-										<a href="{{path('app_details',{'slug':mode.slug})}}">
-											<img class="primary_img" src="{{mode.imageAnnonces[0].imageName}}" alt="consectetur">
-										</a>
-										<div class="product_action">
-											<ul>
-												{% if mode.isPro %}
-													<li class="wishlist">
-														<a class='text-danger' data-tippy="Pro" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="left">
-															<i class="fa-solid fa-store"></i>
-														</a>
-													</li>
-												{% endif %}
-												<li class="quick_view">
-													<a data-tippy="Whatsapp" href="https://api.whatsapp.com/send?phone={{mode.user.infoPerso.whatsapp}}&text=Je suis intéressé par votre annonce {{mode.libelleAnnonce}} du {{mode.createdAt|date('d-m-y')}} sur le site Araba market">
-														<i class="fa fa-whatsapp"></i>
-													</a>
-												</li>
-												<li class="compare">
-													<a data-tippy="Favoris" href="#" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="left">
-														<i class="icon-heart icons"></i>
-													</a>
-												</li>
-											</ul>
-										</div>
-										<div class="product_label">
-											<span>
-												<i class="fa-solid fa-check-double"></i>
-											</span>
-										</div>
-									</div>
-									<figcaption class="product_content text-center">
-										<h4 class="product_name">
-											<a href="{{path('app_details',{'slug':'mode.slug'})}}">{{mode.libelleAnnonce}}</a>
-										</h4>
-										<div class="price_box">
-											<span class="current_price">{{mode.prix}}</span>
-											<span class="">CFA</span>
-										</div>
-										<div class="add_to_cart">
-											<a class="btn btn-danger" href="#" data-tippy="{{mode.user.infoPerso.telephone}}" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="top">Contactez</a>
-										</div>
-									</figcaption>
-								</figure>
-							</article>
-						{% endfor %}
-					</div>
-				</div>
-				<div class="tab-pane fade" id="accessories2" role="tabpanel">
-					<div class="product_slick slick_slider_activation" data-slick='{ "slidesToShow": 5,"slidesToScroll": 1,"arrows": true,"dots": false,"autoplay": false, "speed": 300,"infinite": true,"responsive":[{"breakpoint":992, "settings": { "slidesToShow": 3 } },{"breakpoint":768, "settings": { "slidesToShow": 2 } }, {"breakpoint":300, "settings": { "slidesToShow": 1 } }]}'>
-						{% for sante in santes %}
-							<article class="col single_product">
-								<figure>
-									<div class="product_thumb">
-										<a href="{{path('app_details',{'slug':sante.slug})}}">
-											<img class="primary_img" src="{{sante.imageAnnonces[0].imageName}}" alt="consectetur">
-										</a>
-										<div class="product_action">
-											<ul>
-												{% if sante.isPro %}
-													<li class="wishlist">
-														<a class='text-danger' data-tippy="Pro" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="left">
-															<i class="fa-solid fa-store"></i>
-														</a>
-													</li>
-												{% endif %}
-												<li class="quick_view">
-													<a data-tippy="Whatsapp" href="https://api.whatsapp.com/send?phone={{sante.user.infoPerso.whatsapp}}&text=Je suis intéressé par votre annonce {{sante.libelleAnnonce}} du {{sante.createdAt|date('d-m-y')}} sur le site Araba market">
-														<i class="fa fa-whatsapp"></i>
-													</a>
-												</li>
-												<li class="compare">
-													<a data-tippy="Favoris" href="#" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="left">
-														<i class="icon-heart icons"></i>
-													</a>
-												</li>
-											</ul>
-										</div>
-										<div class="product_label">
-											<span>
-												<i class="fa-solid fa-check-double"></i>
-											</span>
-										</div>
-									</div>
-									<figcaption class="product_content text-center">
-										<h4 class="product_name">
-											<a href="{{path('app_details',{'slug':sante.slug})}}">{{sante.libelleAnnonce}}</a>
-										</h4>
-										<div class="price_box">
-											<span class="current_price">{{sante.prix}}</span>
-											<span class="">CFA</span>
-										</div>
-										<div class="add_to_cart">
-											<a class="btn btn-danger" href="#" data-tippy="{{sante.user.infoPerso.telephone}}" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="top">Contactez</a>
-										</div>
-									</figcaption>
-								</figure>
-							</article>
-						{% endfor %}
-					</div>
-				</div>
+				{{ component('annonces', { 
+					toggle: 'Tout',
+					annonces: all }) 
+				}}
+				{#End of #}
+				{#Pour toutes les annonces de type immobilier#}
+				{{ component('annonces', { 
+					toggle: 'Immobilier',
+					annonces: immobiliers })
+				}}
+				{#End of #}
+				{#Pour toutes les annonces de type vehicule#}
+				{{ component('annonces', { 
+					toggle: 'Vehicule',
+					annonces: vehicules })
+				}}
+				{#End of #}
+
+				{#Pour toutes les annonces de type vetements#}
+				{{ component('annonces', { 
+					toggle: 'Vetement',
+					annonces: vetements })
+				}}
+				{#End of #}
+
+				{#Pour toutes les annonces de type sante#}
+			{{component('annonces', { 
+					toggle: 'Sante',
+					annonces: santes })
+			}}
+				{#End of #}
 			</div>
 		</div>
 	</div>
