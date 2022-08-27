@@ -158,7 +158,8 @@
 																	</li>
 																{% endif %}
 																<li class="quick_view">
-																	<a data-tippy="Whatsapp" href="https://api.whatsapp.com/send?phone={{annonce.user.infoPerso.whatsapp}}&text=Je suis intéressé par votre annonce {{annonce.libelleAnnonce}} du {{annonce.createdAt|date('d-m-y')}} sur le site Araba market">
+																	<a data-tippy="Whatsapp" href="https://api.whatsapp.com/send?phone={{annonce.user.infoPerso.whatsapp}}&text=Je suis intéressé par votre annonce {{annonce.libelleAnnonce}} du {{annonce.createdAt|date('d-m-y')}} sur le site Araba market" data-tippy-placement="left">
+
 																		<i class="fa fa-whatsapp"></i>
 																	</a>
 																</li>
@@ -321,86 +322,9 @@
 									</div>
 								</div>
 							</div>
-							<!-- modal area start-->
-							<div class="modal fade" id="modal_box{{annonce.id}}" tabindex="-1" role="dialog" aria-hidden="true">
-								<div class="modal-dialog modal-dialog-centered" role="document">
-									<div class="modal-content">
-										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-											<span aria-hidden="true">
-												<i class="ion-android-close"></i>
-											</span>
-										</button>
-										<div class="modal_body">
-											<div class="container">
-												<div class="row">
-													<div class="col-lg-6 col-md-6 col-sm-12">
-														<div class="modal_zoom_gallery">
-															<div class="product_zoom_thumb">
-																<img src="{{asset(annonce.imageAnnonces[0].imageName)}}" alt="">
-															</div>
-														</div>
-													</div>
-													<div class="col-lg-6 col-md-6 col-sm-12">
-														<div class="modal_right">
-															<div class="modal_title mb-10">
-																<h2>
-																	{{annonce.libelleAnnonce}}
-																</h2>
-															</div>
-															<div class="modal_price mb-10">
-																<span class="new_price">{{annonce.prix}}
-																</span>
-																<span class="">CFA</span>
-															</div>
-
-															<div class="variant_quantity_btn d-flex">
-																<a class="btn btn-danger mr-3" href="" data-tippy="{{annonce.user.infoPerso.telephone}}" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="top">
-																	<i class="fa fa-phone"></i>
-																	numero téléphone</a>
-																<a class="btn btn-success ml-3" data-tippy="{{annonce.user.infoPerso.whatsapp}}" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="top" href="https://api.whatsapp.com/send?phone={{annonce.user.infoPerso.whatsapp}}&text=Je suis intéressé par votre annonce {{annonce.libelleAnnonce}} du {{annonce.createdAt|date('d-m-y')}} sur le site Araba market">
-																	<i class="fa fa-whatsapp"></i>
-																	numero whatsapp</a>
-															</div>
-															<div class="modal_social">
-																<h2>Partager ce produit</h2>
-																<ul>
-																	<li class="facebook">
-																		<a href="#">
-																			<i class="fa fa-facebook"></i>
-																		</a>
-																	</li>
-																	<li class="twitter">
-																		<a href="#">
-																			<i class="fa fa-twitter"></i>
-																		</a>
-																	</li>
-																	<li class="pinterest">
-																		<a href="#">
-																			<i class="fa fa-pinterest"></i>
-																		</a>
-																	</li>
-																	<li class="google-plus">
-																		<a href="#">
-																			<i class="fa fa-google-plus"></i>
-																		</a>
-																	</li>
-																	<li class="linkedin">
-																		<a href="#">
-																			<i class="fa fa-linkedin"></i>
-																		</a>
-																	</li>
-																</ul>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- modal area end-->
-
+							{#Component for modal#}
+							{{ component('modal', { annonce: annonce }) }}
+							{#end of Component for modal#}
 						{% endfor %}
 					</div>
 					<div class="pagination_style pagination justify-content-center">

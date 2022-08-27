@@ -4,312 +4,274 @@
 
 
 {% block body %}
-	<div
-		class="mt-5 shop_section">
+	<div class="mt-2 shop_section">
 
-		<!--breadcrumbs area start-->
-		<div class="mt-6 breadcrumbs_area breadcrumbs_product">
-			<div class="container">
-				<div class="row">
-					<div class="col-12">
-						<div class="breadcrumb_content">
-							<ul>
-								<li>
-									<a href="index.html">Acceuil</a>
-								</li>
-								<li>
-									<a href="shop.html">Acheter</a>
-								</li>
-								<li>#details sur le slug</li>
-							</ul>
+		<div class="col-8 mx-auto">
+			{#  #}
+			<!--breadcrumbs area end-->
+				<div class="mt-2 card mb-3" style="max-width: 540px;"> <div class="row g-0">
+					<div class="col-md-4">
+						<img src="..." class="img-fluid rounded-start" alt="...">
+					</div>
+					<div class="col-md-6">
+						<div class="card-body">
+							<h4 class="card-title">
+								Nom User or Pro
+							</h4>
+							<strong class="card-text">Nombre d'annonces
+							</strong>
+							<p class="card-text">
+								<small class="text-muted">Membre
+									{{annonce.user.createdAt|ago(locale='fr')}}
+								</small>
+							</p>
 						</div>
 					</div>
+					{% if annonce.isPro %}
+						<div class="d-flex col-2">
+							<a href="#" data-tippy="Pro" class="btn-primary" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="right">
+								<i class="fa-solid fa-store"></i>
+							</a>
+						</div>
+					{% endif %}
 				</div>
 			</div>
-		</div>
-		<!--breadcrumbs area end-->
 
-		<!--product details start-->
-		<section class="product_details mb-135">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-6 col-md-6">
-						<div class="product_zoom_gallery">
-							<div class="zoom_gallery_inner d-flex">
-								<div class="zoom_tab_img">
-									<a class="zoom_tabimg_list" href="javascript:void(0)"><img src="{{asset(annonce.imageAnnonces[0].imageName)}}" alt="tab-thumb"></a>
-									<a class="zoom_tabimg_list" href="javascript:void(0)"><img src="{{asset(annonce.imageAnnonces[0].imageName)}}" alt=" tab-thumb"></a>
-									<a class="zoom_tabimg_list" href="javascript:void(0)"><img src="{{asset(annonce.imageAnnonces[0].imageName)}}" alt="tab-thumb"></a>
-									<a class="zoom_tabimg_list" href="javascript:void(0)"><img src="{{asset(annonce.imageAnnonces[0].imageName)}}" alt="tab-thumb"></a>
-									<a class="zoom_tabimg_list" href="javascript:void(0)"><img src="{{asset(annonce.imageAnnonces[0].imageName)}}" alt="tab-thumb"></a>
-									<a class="zoom_tabimg_list" href="javascript:void(0)"><img src="{{asset(annonce.imageAnnonces[0].imageName)}}" alt="tab-thumb"></a>
-									<a class="zoom_tabimg_list" href="javascript:void(0)"><img src="{{asset(annonce.imageAnnonces[0].imageName)}}" alt="tab-thumb"></a>
-									<a class="zoom_tabimg_list" href="javascript:void(0)"><img src="{{asset(annonce.imageAnnonces[0].imageName)}}" alt="tab-thumb"></a>
-								</div>
-								<div class="product_zoom_main_img">
-									<div class="product_zoom_thumb">
-										<img data-image="{{asset(annonce.imageAnnonces[0].imageName)}}" src="{{asset(annonce.imageAnnonces[0].imageName)}}" alt="">
+
+			<!--product details start-->
+			<section class="product_details mb-25">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-6 col-md-6">
+							<div class="product_zoom_gallery">
+								<div class="zoom_gallery_inner d-flex">
+									<div class="zoom_tab_img">
+										<a class="zoom_tabimg_list" href="javascript:void(0)"><img src="{{asset(annonce.imageAnnonces[0].imageName)}}" alt="tab-thumb"></a>
+										<a class="zoom_tabimg_list" href="javascript:void(0)"><img src="{{asset(annonce.imageAnnonces[0].imageName)}}" alt=" tab-thumb"></a>
+										<a class="zoom_tabimg_list" href="javascript:void(0)"><img src="{{asset(annonce.imageAnnonces[0].imageName)}}" alt="tab-thumb"></a>
+										<a class="zoom_tabimg_list" href="javascript:void(0)"><img src="{{asset(annonce.imageAnnonces[0].imageName)}}" alt="tab-thumb"></a>
+										<a class="zoom_tabimg_list" href="javascript:void(0)"><img src="{{asset(annonce.imageAnnonces[0].imageName)}}" alt="tab-thumb"></a>
+										<a class="zoom_tabimg_list" href="javascript:void(0)"><img src="{{asset(annonce.imageAnnonces[0].imageName)}}" alt="tab-thumb"></a>
+										<a class="zoom_tabimg_list" href="javascript:void(0)"><img src="{{asset(annonce.imageAnnonces[0].imageName)}}" alt="tab-thumb"></a>
+										<a class="zoom_tabimg_list" href="javascript:void(0)"><img src="{{asset(annonce.imageAnnonces[0].imageName)}}" alt="tab-thumb"></a>
 									</div>
-									<div class="product_zoom_thumb">
-										<img data-image="{{asset(annonce.imageAnnonces[0].imageName)}}" src="{{asset(annonce.imageAnnonces[0].imageName)}}" alt="">
-									</div>
-									<div class="product_zoom_thumb">
-										<img data-image="{{asset(annonce.imageAnnonces[0].imageName)}}" src="{{asset(annonce.imageAnnonces[0].imageName)}}" alt="">
-									</div>
-									<div class="product_zoom_thumb">
-										<img data-image="assets/img/product/big-product/product1.png" src="{{asset(annonce.imageAnnonces[0].imageName)}}" alt="">
-									</div>
-									<div class="product_zoom_thumb">
-										<img data-image="{{asset(annonce.imageAnnonces[0].imageName)}}" src="{{asset(annonce.imageAnnonces[0].imageName)}}" alt="">
-									</div>
-									<div class="product_zoom_thumb">
-										<img data-image="{{asset(annonce.imageAnnonces[0].imageName)}}" src="{{asset(annonce.imageAnnonces[0].imageName)}}" alt="">
-									</div>
-									<div class="product_zoom_thumb">
-										<img data-image="{{asset(annonce.imageAnnonces[0].imageName)}}" src="{{asset(annonce.imageAnnonces[0].imageName)}}" alt="">
-									</div>
-									<div class="product_zoom_thumb">
-										<img data-image="{{asset(annonce.imageAnnonces[0].imageName)}}" src="{{asset(annonce.imageAnnonces[0].imageName)}}" alt="">
+									<div class="product_zoom_main_img">
+										<div class="product_zoom_thumb">
+											<img data-image="{{asset(annonce.imageAnnonces[0].imageName)}}" src="{{asset(annonce.imageAnnonces[0].imageName)}}" alt="">
+										</div>
+										<div class="product_zoom_thumb">
+											<img data-image="{{asset(annonce.imageAnnonces[0].imageName)}}" src="{{asset(annonce.imageAnnonces[0].imageName)}}" alt="">
+										</div>
+										<div class="product_zoom_thumb">
+											<img data-image="{{asset(annonce.imageAnnonces[0].imageName)}}" src="{{asset(annonce.imageAnnonces[0].imageName)}}" alt="">
+										</div>
+										<div class="product_zoom_thumb">
+											<img data-image="assets/img/product/big-product/product1.png" src="{{asset(annonce.imageAnnonces[0].imageName)}}" alt="">
+										</div>
+										<div class="product_zoom_thumb">
+											<img data-image="{{asset(annonce.imageAnnonces[0].imageName)}}" src="{{asset(annonce.imageAnnonces[0].imageName)}}" alt="">
+										</div>
+										<div class="product_zoom_thumb">
+											<img data-image="{{asset(annonce.imageAnnonces[0].imageName)}}" src="{{asset(annonce.imageAnnonces[0].imageName)}}" alt="">
+										</div>
+										<div class="product_zoom_thumb">
+											<img data-image="{{asset(annonce.imageAnnonces[0].imageName)}}" src="{{asset(annonce.imageAnnonces[0].imageName)}}" alt="">
+										</div>
+										<div class="product_zoom_thumb">
+											<img data-image="{{asset(annonce.imageAnnonces[0].imageName)}}" src="{{asset(annonce.imageAnnonces[0].imageName)}}" alt="">
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="col-lg-6 col-md-6">
-						<div class="product_d_right">
-							<form action="#">
-								<h1>{{annonce.libelleAnnonce}}</h1>
-								<div class="product_ratting_review d-flex align-items-center">
+						<div class="col-lg-6 col-md-6">
+							<div class="product_d_right">
+								<form action="#">
+									<h1>{{annonce.libelleAnnonce}}</h1>
+									<div class="product_ratting_review d-flex align-items-center">
 
-									<div class="product_review">
-										<ul class="d-flex">
-											<li>4 avis</li>
-											<li>Donner votre avis</li>
-										</ul>
-									</div>
-								</div>
-								<div class="price_box">
-									<span class="current_price">{{annonce.prix}}
-										CFA</span>
-								</div>
-								<div class="product_availalbe">
-									<ul class="d-flex">
-										<li>
-											<i class="icon-layers icons"></i>
-											Only
-											<span>15</span>
-											left
-										</li>
-									</ul>
-								</div>
-								<p class="text-center">intéressé(s) ?</p>
-								<div class="product_variant">
-
-									<div class="variant_quantity_btn d-flex">
-										<button class="button btn btn-primary" type="submit">
-											<i class="ion-android-add"></i>
-											Add To Cart</button>
-										<a class="wishlist" href="#">
-											<i class="ion-ios-heart"></i>
-										</a>
-									</div>
-								</div>
-								<div class="variant_quantity_btn d-flex">
-									<a class="btn btn-danger mr-3" href="" data-tippy="{{annonce.user.infoPerso.telephone}}" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="top">
-										<i class="fa fa-phone"></i>
-										numero téléphone</a>
-									<a class="btn btn-success ml-3" data-tippy="{{annonce.user.infoPerso.whatsapp}}" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="top" href="https://api.whatsapp.com/send?phone={{annonce.user.infoPerso.whatsapp}}&text=Je suis intéressé par votre annonce {{annonce.libelleAnnonce}} du {{annonce.createdAt|date('d-m-y')}} sur le site Araba market">
-										<i class="fa fa-whatsapp"></i>
-										numero whatsapp</a>
-								</div>
-
-								<div class="product_sku">
-									<p>
-										<span>SKU:
-										</span>
-										#ABC123456</p>
-								</div>
-								<div class="product_tags d-flex">
-									<span>tags:
-									</span>
-									<ul class="d-flex">
-										<li>
-											<a href="#">fashion,</a>
-										</li>
-										<li>
-											<a href="#">clothings,</a>
-										</li>
-										<li>
-											<a href="#">accessorires</a>
-										</li>
-									</ul>
-								</div>
-								<div class="priduct_social d-flex">
-									<span>SHARE:
-									</span>
-									<ul>
-										<li><a href="#"><i class="ion-social-twitter"></i></a></li>
-										<li><a href="#"><i class="ion-social-facebook"></i></a></li>
-										<li><a href="#"><i class="ion-social-googleplus-outline"></i></a></li>
-										<li><a href="#"><i class="ion-social-pinterest"></i></a></li>
-										<li><a href="#"><i class="ion-social-instagram-outline"></i></a></li>
-									</ul>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<!--product details end-->
-
-		<!--product info start-->
-		<div class="product_d_info mb-118">
-			<div class="container">
-				<div class="row">
-					<div class="col-12">
-						<div class="product_d_inner">
-							<div class="product_info_button border-bottom">
-								<ul class="nav" role="tablist">
-									<li>
-										<a class="active" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="false">Product Description</a>
-									</li>
-									<li>
-										<a data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews
-										</a>
-									</li>
-									<li>
-										<a data-toggle="tab" href="#video" role="tab" aria-controls="video" aria-selected="false">Custom Tab Video
-										</a>
-									</li>
-
-								</ul>
-							</div>
-							<div class="tab-content">
-								<div class="tab-pane fade show active" id="info" role="tabpanel">
-									<div class="product_info_content">
-										<p>{{annonce.description}}</p>
-									</div>
-								</div>
-								<div class="tab-pane fade" id="reviews" role="tabpanel">
-									<div class="reviews_wrapper">
-										<h2>1 review for Donec eu furniture</h2>
-										<div class="reviews_comment_box">
-											<div class="comment_thmb">
-												<img src="assets/img/blog/comment2.jpg" alt="">
-											</div>
-											<div class="comment_text">
-												<div class="reviews_meta">
-													<div class="star_rating">
-														<ul class="d-flex">
-															<li>
-																<a href="#">
-																	<i class="icon-star"></i>
-																</a>
-															</li>
-															<li>
-																<a href="#">
-																	<i class="icon-star"></i>
-																</a>
-															</li>
-															<li>
-																<a href="#">
-																	<i class="icon-star"></i>
-																</a>
-															</li>
-															<li>
-																<a href="#">
-																	<i class="icon-star"></i>
-																</a>
-															</li>
-															<li>
-																<a href="#">
-																	<i class="icon-star"></i>
-																</a>
-															</li>
-														</ul>
-													</div>
-													<p>
-														<strong>admin
-														</strong>- September 12, 2018</p>
-													<span>roadthemes</span>
-												</div>
-											</div>
-
-										</div>
-										<div class="comment_title">
-											<h2>Add a review
-											</h2>
-											<p>Your email address will not be published.  Required fields are marked
-											</p>
-										</div>
-										<div class="product_ratting mb-10">
-											<h3>Your rating</h3>
+										<div class="product_review">
+											{% set avis = annonce.commentaires|length %}
 											<ul class="d-flex">
-												<li>
-													<a href="#">
-														<i class="icon-star"></i>
-													</a>
-												</li>
-												<li>
-													<a href="#">
-														<i class="icon-star"></i>
-													</a>
-												</li>
-												<li>
-													<a href="#">
-														<i class="icon-star"></i>
-													</a>
-												</li>
-												<li>
-													<a href="#">
-														<i class="icon-star"></i>
-													</a>
-												</li>
-												<li>
-													<a href="#">
-														<i class="icon-star"></i>
-													</a>
-												</li>
+												<li>{{avis}}
+													avis</li>
+												<li>Donner votre avis</li>
 											</ul>
 										</div>
-										<div class="product_review_form">
-											<form action="#">
-												<div class="row">
-													<div class="col-12">
-														<label for="review_comment">Your review
-														</label>
-														<textarea name="comment" id="review_comment"></textarea>
-													</div>
-													<div class="col-lg-6 col-md-6">
-														<label for="author">Name</label>
-														<input id="author" type="text">
-
-													</div>
-													<div class="col-lg-6 col-md-6">
-														<label for="email">Email
-														</label>
-														<input id="email" type="text">
-													</div>
-												</div>
-												<button type="submit">Submit</button>
-											</form>
+									</div>
+									<div class="price_box">
+										<span class="current_price">{{annonce.prix}}
+											CFA</span>
+									</div>
+									<div class="product_availalbe">
+										<ul class="d-flex">
+											<li>
+												<i class="fa fa-calendar"></i>
+												<small>Publiée
+													{{annonce.createdAt|ago(locale="fr")}}
+												</small>
+											</li>
+										</ul>
+									</div>
+									<div class="product_variant">
+										<div class="variant_quantity_btn d-flex">
+											{% if annonce.isPro %}
+												<a href="#" data-tippy="Pro" class="text-white btn" style="background:#ff2f2f;" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="left">
+													<i class="fa-solid fa-store"></i>
+												</a>
+											{% endif %}
+											<a class="wishlist" href="#">
+												<i class="ion-ios-heart"></i>
+											</a>
 										</div>
 									</div>
-								</div>
-								<div class="tab-pane fade" id="video" role="tabpanel">
-									<div class="product_tab_vidio text-center">
-										<iframe width="729" height="410" src="https://www.youtube.com/embed/BUWzX78Ye_8" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+									<div class="variant_quantity_btn d-flex">
+										<a class="btn btn-danger mr-4" data-tippy="{{annonce.user.infoPerso.telephone}}" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="top">
+											<i class="fa fa-phone"></i>
+											<small>téléphone</small>
+										</a>
+										<a class="btn btn-success ml-4" data-tippy="{{annonce.user.infoPerso.whatsapp}}" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="top" href="https://api.whatsapp.com/send?phone={{annonce.user.infoPerso.whatsapp}}&text=Je suis intéressé par votre annonce {{annonce.libelleAnnonce}} du {{annonce.createdAt|date('d-m-y')}} sur le site Araba market">
+											<i class="fa fa-whatsapp"></i>
+											<small>whatsapp</small>
+										</a>
 									</div>
-								</div>
 
+									<div class="product_sku">
+										{% if annonce.adresseAnnonce %}
+											<p>
+												<i class="fa-solid fa-location-pin"></i>
+												{{annonce.adresseAnnonce.pays}},
+												{{annonce.adresseAnnonce.ville}},
+												{{annonce.adresseAnnonce.details}}
+											</p>
+										{% endif %}
+									</div>
+
+									<div class="priduct_social d-flex">
+										<span>Partager:
+										</span>
+										<ul>
+											<li><a href="#"><i class="ion-social-twitter"></i></a></li>
+											<li><a href="#"><i class="ion-social-facebook"></i></a></li>
+											<li><a href="#"><i class="ion-social-googleplus-outline"></i></a></li>
+											<li><a href="#"><i class="ion-social-pinterest"></i></a></li>
+											<li><a href="#"><i class="ion-social-instagram-outline"></i></a></li>
+										</ul>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="text-center mt-5">
+					<a href="" class="btn btn-light">
+						<i class="fa-solid fa-bell-slash"></i>
+						Signaler le vendeur</a>
+				</div>
+			</section>
+			<!--product details end-->
+
+
+			<!--product info start-->
+			<div class="product_d_info mb-118">
+				<div class="container">
+					<div class="row">
+						<div class="col-12">
+							<div class="product_d_inner">
+								<div class="product_info_button border-bottom">
+									<ul class="nav" role="tablist">
+										<li>
+											<a class="active" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="false">Description annonce</a>
+										</li>
+										<li>
+											<a data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Commentaires
+											</a>
+										</li>
+										<li>
+											<a data-toggle="tab" href="#video" role="tab" aria-controls="video" aria-selected="false">Vidéo
+											</a>
+										</li>
+
+									</ul>
+								</div>
+								<div class="tab-content">
+									<div class="tab-pane fade show active" id="info" role="tabpanel">
+										<div class="product_info_content">
+											<p>{{annonce.description}}</p>
+										</div>
+									</div>
+									<div class="tab-pane fade" id="reviews" role="tabpanel">
+										<div class="reviews_wrapper">
+											<h2>{{avis}}
+												avis pour
+												{{annonce.libelleAnnonce}}
+											</h2>
+											{% for comment in annonce.commentaires %}
+												<div class="reviews_comment_box">
+													<div class="comment_thmb">
+														<img src="{{asset('assets/img/blog/comment2.jpg}}')}}" alt="">
+													</div>
+
+													<div class="comment_text">
+														<div class="reviews_meta">
+															<p>
+																<strong>{{comment.user.getFullName}}
+																</strong>
+															</p>
+															<div class="star_rating">
+																<ul class="d-flex">
+																	<span>{{comment.createdAt|ago(locale='fr')}}</span>
+																</ul>
+															</div>
+															<span>{{comment.content}}
+															</span>
+														</div>
+													</div>
+												</div>
+											{% endfor %}
+											<div class="comment_title">
+												<h2>Ajouter un commentaire</h2>
+												<p>Your email address will not be published.  Required fields are marked
+												</p>
+											</div>
+											<div class="product_review_form">
+												<form action="#">
+													<div class="row">
+														<div class="col-12">
+															<label for="review_comment">Your review
+															</label>
+															<textarea name="comment" id="review_comment"></textarea>
+														</div>
+														<div class="col-lg-6 col-md-6">
+															<label for="author">Name</label>
+															<input id="author" type="text">
+
+														</div>
+														<div class="col-lg-6 col-md-6">
+															<label for="email">Email
+															</label>
+															<input id="email" type="text">
+														</div>
+													</div>
+													<button type="submit">Submit</button>
+												</form>
+											</div>
+										</div>
+									</div>
+									<div class="tab-pane fade" id="video" role="tabpanel">
+										<div class="product_tab_vidio text-center">
+											<iframe width="729" height="410" src="https://www.youtube.com/embed/BUWzX78Ye_8" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+										</div>
+									</div>
+
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+			<!--product info end-->
 		</div>
-		<!--product info end-->
 
 		<!--product area start-->
 		<section class="product_area related_products mb-118">
@@ -366,6 +328,14 @@
 										<div class="price_box">
 											<span class="current_price">{{annonce.prix}}</span>
 											<span class="">CFA</span>
+											{% if annonce.adresseAnnonce %}
+												<p>
+													<i class="fa-solid fa-location-pin"></i>
+													{{annonce.adresseAnnonce.pays}},
+													{{annonce.adresseAnnonce.ville}},
+													{{annonce.adresseAnnonce.details}}
+												</p>
+											{% endif %}
 										</div>
 										<div class="add_to_cart">
 											<a class="btn btn-danger" href="#" data-tippy="{{annonce.user.infoPerso.telephone}}" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="top">Contactez</a>
@@ -381,105 +351,6 @@
 		<!--product area end-->
 	</div>
 
-	<!-- modal area start-->
-	<div class="modal fade" id="modal_box" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">
-						<i class="ion-android-close"></i>
-					</span>
-				</button>
-				<div class="modal_body">
-					<div class="container">
-						<div class="row">
-							<div class="col-lg-6 col-md-6 col-sm-12">
-								<div class="modal_zoom_gallery">
-									<div class="product_zoom_thumb">
-										<img src="assets/img/product/big-product/product1.png" alt="">
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6 col-sm-12">
-								<div class="modal_right">
-									<div class="modal_title mb-10">
-										<h2>Donec Ac Tempus</h2>
-									</div>
-									<div class="modal_price mb-10">
-										<span class="new_price">$64.99</span>
-										<span class="old_price">$78.99</span>
-									</div>
-									<div class="modal_description mb-15">
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia iste laborum ad impedit pariatur esse optio tempora sint ullam autem deleniti nam in quos qui,
-										</p>
-									</div>
-									<div class="variants_selects">
-										<div class="variants_size">
-											<h2>size</h2>
-											<select class="select_option">
-												<option selected value="1">s</option>
-												<option value="1">m</option>
-												<option value="1">l</option>
-												<option value="1">xl</option>
-												<option value="1">xxl</option>
-											</select>
-										</div>
-										<div class="variants_color">
-											<h2>color</h2>
-											<select class="select_option">
-												<option selected value="1">purple</option>
-												<option value="1">violet</option>
-												<option value="1">black</option>
-												<option value="1">pink</option>
-												<option value="1">orange</option>
-											</select>
-										</div>
-										<div class="modal_add_to_cart">
-											<form action="#">
-												<input min="1" max="100" step="2" value="1" type="number">
-												<button type="submit">add to cart</button>
-											</form>
-										</div>
-									</div>
-									<div class="modal_social">
-										<h2>Share this product</h2>
-										<ul>
-											<li class="facebook">
-												<a href="#">
-													<i class="fa fa-facebook"></i>
-												</a>
-											</li>
-											<li class="twitter">
-												<a href="#">
-													<i class="fa fa-twitter"></i>
-												</a>
-											</li>
-											<li class="pinterest">
-												<a href="#">
-													<i class="fa fa-pinterest"></i>
-												</a>
-											</li>
-											<li class="google-plus">
-												<a href="#">
-													<i class="fa fa-google-plus"></i>
-												</a>
-											</li>
-											<li class="linkedin">
-												<a href="#">
-													<i class="fa fa-linkedin"></i>
-												</a>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- modal area end-->
 
 	{% block javascripts %}
 		{{ encore_entry_script_tags('notyf') }}

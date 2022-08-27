@@ -1,6 +1,5 @@
-<div class="modal fade" id="modal_box{{id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-
-	<div class="modal-dialog" role="document">
+<div class="modal fade" id="modal_box{{annonce.id}}" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				<span aria-hidden="true">
@@ -13,24 +12,33 @@
 						<div class="col-lg-6 col-md-6 col-sm-12">
 							<div class="modal_zoom_gallery">
 								<div class="product_zoom_thumb">
-									<img src="assets/img/product/big-product/product1.png" alt="" width="60%">
+									<img src="{{asset(annonce.imageAnnonces[0].imageName)}}" alt="">
 								</div>
 							</div>
 						</div>
 						<div class="col-lg-6 col-md-6 col-sm-12">
 							<div class="modal_right">
 								<div class="modal_title mb-10">
-									<h2>{{libelle}}</h2>
+									<h2>
+										{{annonce.libelleAnnonce}}
+									</h2>
 								</div>
 								<div class="modal_price mb-10">
-									<span class="new_price">$64.99</span>
-									<span class="old_price">$78.99</span>
+									<span class="new_price">{{annonce.prix}}
+									</span>
+									<span class="">CFA</span>
 								</div>
-								<div class="modal_description mb-15">
-									<p>{{description}}</p>
+
+								<div class="variant_quantity_btn d-flex">
+									<a class="btn btn-danger mr-3" href="" data-tippy="{{annonce.user.infoPerso.telephone}}" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="top">
+										<i class="fa fa-phone"></i>
+										numero téléphone</a>
+									<a class="btn btn-success ml-3" data-tippy="{{annonce.user.infoPerso.whatsapp}}" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="top" href="https://api.whatsapp.com/send?phone={{annonce.user.infoPerso.whatsapp}}&text=Je suis intéressé par votre annonce {{annonce.libelleAnnonce}} du {{annonce.createdAt|date('d-m-y')}} sur le site Araba market">
+										<i class="fa fa-whatsapp"></i>
+										numero whatsapp</a>
 								</div>
 								<div class="modal_social">
-									<h2>Share this product</h2>
+									<h2>Partager ce produit</h2>
 									<ul>
 										<li class="facebook">
 											<a href="#">

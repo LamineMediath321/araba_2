@@ -2,14 +2,11 @@
 // src/Components/AlertComponent.php
 namespace App\Components;
 
+use App\Entity\Annonce;
 use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 
 #[AsTwigComponent('modal')]
 class ModalComponent
 {
-    public int $id;
-
-    public string $libelle;
-
-    public string $description;
+    public Annonce $annonce;
 }
