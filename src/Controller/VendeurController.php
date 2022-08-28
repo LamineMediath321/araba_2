@@ -28,7 +28,11 @@ class VendeurController extends AbstractController
                 $data,
                 $request->query->getInt('page', 1),
                 12
-            )
+            ),
+            'enVente' => $annoRepo->countAnnoncesByUserEnVendu($this->getUser()) ?? 0,
+            'vendu' => $annoRepo->countAnnoncesByUserVendu($this->getUser()) ?? 0,
+            'expire' => $annoRepo->countAnnoncesByUserExpire($this->getUser()) ?? 0,
+            'noPaye' => $annoRepo->countAnnoncesByUserNoPaye($this->getUser()) ?? 0,
         ]);
     }
 

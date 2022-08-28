@@ -159,16 +159,49 @@ class AnnonceRepository extends ServiceEntityRepository
     }
 
     //Les annonces propres au user
-    public function findAllAnnoncesByUser($user)
+    public function countAnnoncesByUserEnVendu($user)
     {
-        //Le limmite à 10 pourrais changer
         $query = $this->createQueryBuilder('a');
+        $query->select("COUNT(a) as enVente");
         $query->andWhere('a.isPaye = true');
         $query->andWhere('a.user = :user');
         $query->andWhere('a.isUptodate = true');
-        $query->orderBy('a.createdAt', 'DESC');
+        $query->andWhere('a.isVendu = false');
         $query->setParameter('user', $user);
 
-        return $query->getQuery()->getResult();
+        return $query->getQuery()->getSingleScalarResult();
     }
+    public function countAnnoncesByUserVendu($user)
+    {
+        $query = $this->createQueryBuilder('a');
+        $query->select("COUNT(a) as enVente");
+        $query->andWhere('a.isPaye = true');
+        $query->andWhere('a.user = :user');
+        $query->andWhere('a.isVendu = true');
+        $query->setParameter('user', $user);
+
+        return $query->getQuery()->getSingleScalarResult();
+    }
+    public function countAnnoncesByUserExpire($user)
+    {
+        $query = $this->createQueryBuilder('a');
+        $query->select("COUNT(a) as enVente");
+        $query->andWhere('a.isPaye = true');
+        $query->andWhere('a.user = :user');
+        $query->andWhere('a.isUptodate = false');
+        $query->setParameter('user', $user);
+
+        return $query->getQuery()->getSingleScalarResult();
+    }
+    public function countAnnoncesByUserNoPaye($user)
+    {
+        $query = $this->createQueryBuilder('a');
+        $query->select("COUNT(a) as enVente");
+        $query->andWhere('a.isPaye = false');
+        $query->andWhere('a.user = :user');
+        $query->setParameter('user', $user);
+
+        return $query->getQuery()->getSingleScalarResult();
+    }
+    //End of user
 }
