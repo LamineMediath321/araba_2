@@ -15,7 +15,7 @@ class SecurityController extends AbstractController
         if ($this->getUser()) {
             $user = $this->getUser();
             $this->addFlash("info", 'Welcome back ' . $user->getFullname());
-            return $this->redirectToRoute('seller_index');
+            return $this->redirectToRoute('app_vendeur');
         }
 
         // get the login error if there is one

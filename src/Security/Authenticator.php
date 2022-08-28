@@ -52,7 +52,7 @@ class Authenticator extends AbstractLoginFormAuthenticator
 
         // For example:
         $request->getSession()->getFlashBag()->add('success', "Bienvenue dans votre zone");
-        return new RedirectResponse($this->urlGenerator->generate('seller_index'));
+        return new RedirectResponse($this->urlGenerator->generate('app_vendeur'));
         //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 

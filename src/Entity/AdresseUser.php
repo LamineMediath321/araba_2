@@ -19,7 +19,7 @@ class AdresseUser
     #[ORM\Column(length: 255)]
     private ?string $pays = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $ville = null;
 
     #[ORM\Column(length: 255, nullable: true)]

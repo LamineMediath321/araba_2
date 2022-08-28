@@ -158,16 +158,17 @@ class AnnonceRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-
-    /*
-    public function findOneBySomeField($value): ?Annonce
+    //Les annonces propres au user
+    public function findAllAnnoncesByUser($user)
     {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        //Le limmite à 10 pourrais changer
+        $query = $this->createQueryBuilder('a');
+        $query->andWhere('a.isPaye = true');
+        $query->andWhere('a.user = :user');
+        $query->andWhere('a.isUptodate = true');
+        $query->orderBy('a.createdAt', 'DESC');
+        $query->setParameter('user', $user);
+
+        return $query->getQuery()->getResult();
     }
-    */
 }
