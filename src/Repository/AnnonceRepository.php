@@ -203,5 +203,16 @@ class AnnonceRepository extends ServiceEntityRepository
 
         return $query->getQuery()->getSingleScalarResult();
     }
+    public function findAllAnnoncesByuserCime($user)
+    {
+        $query = $this->createQueryBuilder('a');
+        $query->andWhere('a.isPaye = true');
+        $query->andWhere('a.isCime = true');
+        $query->andWhere('a.user = :user');
+        $query->orderBy('a.createdAt', 'DESC');
+        $query->setParameter('user', $user);
+
+        return $query->getQuery()->getResult();
+    }
     //End of user
 }

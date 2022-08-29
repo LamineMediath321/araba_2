@@ -35,22 +35,18 @@
 				</div>
 			</div>
 		</div>
-		<ul class="nav nav-pills mb-3 shadow bg-white rounded" id="pills-tab" role="tablist">
-			<li class="nav-item" role="presentation">
-				<button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-annonces" type="button" role="tab" aria-controls="pills-annonces" aria-selected="true">Annonces</button>
-			</li>
-			<li class="nav-item" role="presentation">
-				<button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Au Top</button>
-			</li>
-			<li class="nav-item" role="presentation">
-				<button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Favoris</button>
-			</li>
-			<li class="nav-item" role="presentation">
-				<button class="nav-link" id="pills-stat-tab" data-bs-toggle="pill" data-bs-target="#pills-stat" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Stat</button>
-			</li>
-		</ul>
-		<div class="tab-content" id="pills-tabContent">
-			<div class="tab-pane fade show active" id="pills-annonces" role="tabpanel" aria-labelledby="pills-annonces-tab">
+
+
+		<nav>
+			<div class="nav nav-tabs" id="nav-tab" role="tablist">
+				<button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Annonces</button>
+				<button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Boots</button>
+				<button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Favoris</button>
+				<button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-stat" type="button" role="tab" aria-controls="nav-stat" aria-selected="false">Stats</button>
+			</div>
+		</nav>
+		<div class="tab-content" id="nav-tabContent">
+			<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 				<nav class="navbar navbar-expand-lg navbar-light">
 					<div class="container-fluid">
 						<div class="collapse navbar-collapse">
@@ -78,7 +74,6 @@
 								<li class="nav-item mr-4 ml-2">
 									<a class="nav-link" href="#">
 										Non payée<p class="text-center">{{noPaye}}</p>
-
 									</a>
 								</li>
 							</ul>
@@ -89,7 +84,7 @@
 					<div class="row shop_wrapper">
 						{% for annonce in annonces %}
 							<div class="col-lg-3 col-md-3 col-sm-6 col-6 ">
-								<div class="single_product{% if annonce.isPro %} border border-danger{% endif %}">
+								<div class="single_product">
 									<div class="product_thumb">
 										<a href="{{path('app_details',{'slug':annonce.slug})}}">
 											<img class="primary_img" src="{{asset(annonce.imageAnnonces[0].imageName)}}" alt="consectetur">
@@ -133,8 +128,14 @@
 										{% if annonce.isCime %}
 											<div class="product_label">
 												<span>
-													<i class="fa-solid fa-check-double"></i>
+													<i class="fa-solid fa-turn-up"></i>
 												</span>
+											</div>
+										{% elseif  annonce.isUptodate and annonce.isPaye %}
+											<div class="product_label">
+												<a class="btn btn-danger" data-tippy="Booster" href="#" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="right">
+													<i class="fa-brands fa-superpowers"></i>
+												</a>
 											</div>
 										{% endif %}
 									</div>
@@ -194,27 +195,130 @@
 						<a href="#" class="btn btn-light">
 							<i class="fa-solid fa-bullhorn"></i>
 							Publier une annonce</a>
+					</div>
+				{% endif %}
 
-					{% endif %}
-				</div>
-				<div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">Les Top</div>
-				<div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">Favoris</div>
-				<div class="tab-pane fade" id="pills-stat" role="tabpanel" aria-labelledby="pills-contact-tab">stat</div>
 			</div>
+			<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+				{% if boots|length>0 %}
+					<div class="row shop_wrapper mt-5">
+						{% for annonce in boots %}
+							<div class="col-lg-3 col-md-3 col-sm-6 col-6 ">
+								<div class="single_product">
+									<div class="product_thumb">
+										<a href="{{path('app_details',{'slug':annonce.slug})}}">
+											<img class="primary_img" src="{{asset(annonce.imageAnnonces[0].imageName)}}" alt="consectetur">
+										</a>
+										<div class="product_action">
+											<ul>
+												{% if annonce.isPro %}
+													<li class="wishlist">
+														<a href="#" data-tippy="Pro" class="text-white" style="background:#ff2f2f;" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="left">
+															<i class="fa-solid fa-store"></i>
+														</a>
+													</li>
+												{% endif %}
+												{% if annonce.isVendu and annonce.isUptodate and annonce.isPaye %}
+													<li class="compare">
+														<a data-tippy="Déclarez En Vente" href="{{path('app_vendu',{'slug':annonce.slug})}}" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="left">
+															<i class="fa-solid fa-shop"></i>
+														</a>
+													</li>
+												{% elseif annonce.isUptodate and annonce.isPaye %}
+													<li class="compare">
+														<a data-tippy="Déclarez vendu" href="{{path('app_vendu',{'slug':annonce.slug})}}" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="left">
+															<i class="fa-solid fa-shop-lock"></i>
+														</a>
+													</li>
+												{% elseif annonce.isPaye %}
+													<li class="compare">
+														<a data-tippy="Metrre à jour" href="#" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="left">
+															<i class="fa-solid fa-wrench"></i>
+														</a>
+													</li>
+												{% endif %}
+											</ul>
+										</div>
+										{% if annonce.isCime %}
+											<div class="product_label">
+												<span>
+													<i class="fa-solid fa-turn-up"></i>
+												</span>
+											</div>
+										{% endif %}
+									</div>
+									<div class="product_content grid_content text-center">
+										<h4 class="product_name">
+											<a href="{{path('app_details',{'slug':annonce.slug})}}">{{annonce.libelleAnnonce}}</a>
+										</h4>
+										<div class="price_box">
+											<span class="current_price">{{annonce.prix}}</span>
+											<span class="">CFA</span>
+											{% if annonce.adresseAnnonce %}
+												<p>
+													<i class="fa-solid fa-location-pin"></i>
+													{{annonce.adresseAnnonce.pays}},
+													{{annonce.adresseAnnonce.ville}},
+													{{annonce.adresseAnnonce.details}}
+												</p>
+											{% endif %}
+										</div>
+										<div class="add_to_cart">
+											{% if annonce.isVendu and annonce.isUptodate and annonce.isPaye %}
+												<a class="btn btn-info" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="left">
+													Vendue
+												</a>
+											{% elseif annonce.isUptodate and annonce.isPaye %}
+												<a class="btn btn-primary" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="left">
+													En vente
+												</a>
+											{% elseif annonce.isPaye %}
+												<a class="btn btn-warning" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="left">
+													Expirée
+												</a>
+											{% endif %}
+										</div>
+									</div>
+								</div>
+							</div>
+						{% endfor %}
+						<div class="text-center mt-5">
+							<a href="#" class="btn btn-light">
+								<i class="fa-brands fa-superpowers"></i>
+								Booster une annonce</a>
+						</div>
+						<div class="d-flex justify-content-center mt-5">
+							{% do boots.setPageRange(2) %}
+							{{knp_pagination_render(boots,'/layouts/partials/_pagination.html.twig')}}
+						</div>
+					</div>
+				{% else %}
+					<div class='alert alert-danger text-center'>Vous n'avez pas d'annonces</div>
+					<div class="text-center mt-5">
+						<a href="#" class="btn btn-light">
+							<i class="fa-brands fa-superpowers"></i>
+							Booster une annonce</a>
+					</div>
+				{% endif %}
+			</div>
+			<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">Favoris</div>
+			<div class="tab-pane fade" id="nav-stat" role="tabpanel" aria-labelledby="nav-contact-tab">Stats</div>
+
 		</div>
+	</div>
 
-		<script src="{{asset('assets/js/vendor/jquery-3.4.1.min.js')}}"></script>
-		<script src="{{asset('assets/js/slick.min.js')}}"></script>
-		<script src="{{asset('assets/js/wow.min.js')}}"></script>
-		<script src="{{asset('assets/js/jquery.scrollup.min.js')}}"></script>
-		<script src="{{asset('assets/js/images-loaded.min.js')}}"></script>
-		<script src="{#{asset('assets/js/isotope.pkgd.min.js')}#}"></script>
-		<script src="{{asset('assets/js/jquery.nice-select.js')}}"></script>
-		<script src="{{asset('assets/js/tippy-bundle.umd.js')}}"></script>
-		<script src="{{asset('assets/js/jquery-ui.min.js')}}"></script>
-		<script src="{{asset('assets/js/jquery.magnific-popup.min.js')}}"></script>
-		<script src="{{asset('assets/js/main.js')}}"></script>
-		{{ encore_entry_script_tags('notyf') }}
+	<script src="{{asset('assets/js/vendor/jquery-3.4.1.min.js')}}"></script>
+	<script src="{{asset('assets/js/slick.min.js')}}"></script>
+	<script src="{{asset('assets/js/wow.min.js')}}"></script>
+	<script src="{{asset('assets/js/jquery.scrollup.min.js')}}"></script>
+	<script src="{{asset('assets/js/images-loaded.min.js')}}"></script>
+	<script src="{#{asset('assets/js/isotope.pkgd.min.js')}#}"></script>
+	<script src="{{asset('assets/js/jquery.nice-select.js')}}"></script>
+	<script src="{{asset('assets/js/tippy-bundle.umd.js')}}"></script>
+	<script src="{{asset('assets/js/jquery-ui.min.js')}}"></script>
+	<script src="{{asset('assets/js/jquery.magnific-popup.min.js')}}"></script>
+	<script src="{{asset('assets/js/main.js')}}"></script>
+	{{ encore_entry_script_tags('notyf') }}
 
 
-	{% endblock %}
+{% endblock %}

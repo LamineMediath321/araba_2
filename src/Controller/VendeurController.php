@@ -23,9 +23,15 @@ class VendeurController extends AbstractController
             ['user' => $this->getUser()],
             ['createdAt' => 'DESC']
         );
+        $data_2 = $annoRepo->findAllAnnoncesByuserCime($this->getUser());
         return $this->render('vendeur/index.html.twig', [
             'annonces' => $paginator->paginate(
                 $data,
+                $request->query->getInt('page', 1),
+                12
+            ),
+            'boots' => $paginator->paginate(
+                $data_2,
                 $request->query->getInt('page', 1),
                 12
             ),
@@ -39,11 +45,12 @@ class VendeurController extends AbstractController
     #[Route('vendeur/vendu/{slug}', name: 'app_vendu')]
     public function vendu(
         Annonce $annonce,
-        EntityManagerInterface $manager
+        EntityManagerInterface $manager,
     ): Response {
         if ($annonce->isIsVendu() == true)
             $annonce->setIsVendu(false);
         else $annonce->setIsVendu(true);
+
 
         $manager->persist($annonce);
         $manager->flush();

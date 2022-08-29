@@ -144,7 +144,7 @@
 										{% for annonce in tops %}
 											<article class="col single_product">
 												<figure>
-													<div class="product_thumb">
+													<div class="product_thumb {% if annonce.isCime %} border border-danger{% endif %}">
 														<a href="{{path('app_details',{'slug':annonce.slug})}}">
 															<img class="primary_img" src="{{asset(annonce.imageAnnonces[0].imageName)}}" alt="consectetur">
 														</a>
@@ -173,7 +173,7 @@
 														<div class="product_label">
 															{% if annonce.isCime %}
 																<span>
-																	<i class="fa-solid fa-check-double"></i>
+																	<i class="fa-solid fa-turn-up"></i>
 																</span>
 															{% endif %}
 														</div>
@@ -246,8 +246,9 @@
 					<div class="row shop_wrapper">
 						{% for annonce in annonces %}
 							<div class="col-lg-4 col-md-4 col-sm-6 col-6 ">
-								<div class="single_product">
-									<div class="product_thumb">
+								<div class="single_product ">
+									<div class="product_thumb {% if annonce.isCime %} border border-danger{% endif %}">
+
 										<a href="{{path('app_details',{'slug':annonce.slug})}}">
 											<img class="primary_img" src="{{asset(annonce.imageAnnonces[0].imageName)}}" alt="consectetur">
 										</a>
@@ -270,7 +271,7 @@
 										{% if annonce.isCime %}
 											<div class="product_label">
 												<span>
-													<i class="fa-solid fa-check-double"></i>
+													<i class="fa-solid fa-turn-up"></i>
 												</span>
 											</div>
 										{% endif %}
