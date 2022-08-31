@@ -301,9 +301,83 @@
 					</div>
 				{% endif %}
 			</div>
-			<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">Favoris</div>
-			<div class="tab-pane fade" id="nav-stat" role="tabpanel" aria-labelledby="nav-contact-tab">Stats</div>
+			<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+				{% if favoris|length>0 %}
+					<div class="row shop_wrapper mt-5">
+						{% for like in favoris %}
+							<div class="col-lg-3 col-md-3 col-sm-6 col-6 ">
+								<div class="single_product">
+									<div class="product_thumb">
+										<a href="{{path('app_details',{'slug':like.annonce.slug})}}">
+											<img class="primary_img" src="{{asset(like.annonce.imageAnnonces[0].imageName)}}" alt="consectetur">
+										</a>
+										<div class="product_action">
+											<ul>
+												{% if like.annonce.isPro %}
+													<li class="wishlist">
+														<a href="#" data-tippy="Pro" class="text-white" style="background:#ff2f2f;" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="left">
+															<i class="fa-solid fa-store"></i>
+														</a>
+													</li>
+												{% endif %}
+											
+											</ul>
+										</div>
+										{% if like.annonce.isCime %}
+											<div class="product_label">
+												<span>
+													<i class="fa-solid fa-turn-up"></i>
+												</span>
+											</div>
+										{% endif %}
+									</div>
+									<div class="product_content grid_content text-center">
+										<h4 class="product_name">
+											<a href="{{path('app_details',{'slug':like.annonce.slug})}}">{{like.annonce.libelleAnnonce}}</a>
+										</h4>
+										<div class="price_box">
+											<span class="current_price">{{like.annonce.prix}}</span>
+											<span class="">CFA</span>
+											{% if like.annonce.adresseAnnonce %}
+												<p>
+													<i class="fa-solid fa-location-pin"></i>
+													{{like.annonce.adresseAnnonce.pays}},
+													{{like.annonce.adresseAnnonce.ville}},
+													{{like.annonce.adresseAnnonce.details}}
+												</p>
+											{% endif %}
+										</div>
+										<div class="add_to_cart">
+											{% if like.annonce.isVendu and annonce.isUptodate and annonce.isPaye %}
+												<a class="btn btn-info" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="left">
+													Vendue
+												</a>
+											{% elseif like.annonce.isUptodate and like.annonce.isPaye %}
+												<a class="btn btn-primary" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="left">
+													En vente
+												</a>
+											{% elseif like.annonce.isPaye %}
+												<a class="btn btn-warning" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="left">
+													Expirée
+												</a>
+											{% endif %}
+										</div>
+									</div>
+								</div>
+							</div>
+						{% endfor %}
+						
+						<div class="d-flex justify-content-center mt-5">
+							{% do favoris.setPageRange(2) %}
+							{{knp_pagination_render(favoris,'/layouts/partials/_pagination.html.twig')}}
+						</div>
+					</div>
+				{% else %}
+					<div class='alert alert-danger text-center'>Vous n'avez pas d'annonces</div>
 
+				{% endif %}
+			</div>
+			<div class="tab-pane fade" id="nav-stat" role="tabpanel" aria-labelledby="nav-contact-tab">Stats</div>
 		</div>
 	</div>
 

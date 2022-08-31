@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Annonce;
 use App\Repository\AnnonceRepository;
+use App\Repository\LikeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,6 +17,7 @@ class VendeurController extends AbstractController
     #[Route('/vendeur', name: 'app_vendeur')]
     public function index(
         AnnonceRepository $annoRepo,
+        LikeRepository $likeRepo,
         PaginatorInterface $paginator,
         Request $request
     ): Response {
@@ -24,6 +26,10 @@ class VendeurController extends AbstractController
             ['createdAt' => 'DESC']
         );
         $data_2 = $annoRepo->findAllAnnoncesByuserCime($this->getUser());
+        $data_fav = $likeRepo->findBy(
+            ['user' => $this->getUser()],
+            ['createdAt' => 'DESC']
+        );
         return $this->render('vendeur/index.html.twig', [
             'annonces' => $paginator->paginate(
                 $data,
@@ -32,6 +38,11 @@ class VendeurController extends AbstractController
             ),
             'boots' => $paginator->paginate(
                 $data_2,
+                $request->query->getInt('page', 1),
+                12
+            ),
+            'favoris' => $paginator->paginate(
+                $data_fav,
                 $request->query->getInt('page', 1),
                 12
             ),

@@ -72,12 +72,16 @@ class Annonce
     #[ORM\Column(type: Types::BIGINT, options: ['default' => 0])]
     private ?string $nbVus = null;
 
+    #[ORM\OneToMany(mappedBy: 'annonce', targetEntity: Like::class)]
+    private Collection $likes;
+
 
 
     public function __construct()
     {
         $this->commentaires = new ArrayCollection();
         $this->imageAnnonces = new ArrayCollection();
+        $this->likes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -343,5 +347,47 @@ class Annonce
         if ($this->getCreatedAt() === null) {
             $this->nbVus = 0;
         }
+    }
+
+    /**
+     * @return Collection<int, Like>
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(Like $like): self
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes->add($like);
+            $like->setAnnonce($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(Like $like): self
+    {
+        if ($this->likes->removeElement($like)) {
+            // set the owning side to null (unless already changed)
+            if ($like->getAnnonce() === $this) {
+                $like->setAnnonce(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     *Permet de savoir si cette annonce est like par un user
+     */
+    public function isLikedByUser(?User $user): bool
+    {
+        foreach ($this->likes as $like) {
+            if ($like->getUser() === $user) return true;
+        }
+
+        return false;
     }
 }

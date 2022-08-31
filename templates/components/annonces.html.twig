@@ -1,5 +1,5 @@
 <div class="tab-pane fade {% if toggle == 'Tout' %} show active {% endif %}" id="toggle{{toggle}}" role="tabpanel">
-	<div class="product_slick slick_slider_activation" data-slick='{"slidesToShow": 5,  "slidesToScroll": 1, "arrows": true, "dots": false, "autoplay": true,  "speed": 150, "infinite": true,"responsive":[ {"breakpoint":992, "settings": { "slidesToShow": 3 } },{"breakpoint":768, "settings": { "slidesToShow": 2 } }, {"breakpoint":300, "settings": { "slidesToShow": 1 } } ] }'>
+	<div class="product_slick slick_slider_activation" data-slick='{"slidesToShow": 5,  "slidesToScroll": 1, "arrows": true, "dots": false, "autoplay": true,  "speed": 150, "infinite": true,"responsive":[ {"breakpoint":992, "settings": { "slidesToShow": 3 } },{"breakpoint":768, "settings": { "slidesToShow": 2 } }, {"breakpoint":300, "settings": { "slidesToShow": 1 }}]}'>
 		{% for annonce in annonces %}
 			<article class="col single_product">
 				<figure>
@@ -21,11 +21,16 @@
 										<i class="fa fa-whatsapp"></i>
 									</a>
 								</li>
+								
 								<li class="compare">
-									<a data-tippy="Favoris" href="#" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="left">
+									<a class="js-like" data-tippy="Favoris" href="{{path('app_favoris',{'slug':annonce.slug})}}" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="left">
+									{% if app.user and annonce.isLikedByUser(app.user) %}
+										<i class="fa fa-heart"></i>
+									{% else %}
 										<i class="icon-heart icons"></i>
+									{% endif %}
 									</a>
-								</li>
+								</li>	
 							</ul>
 						</div>
 						<div class="product_label">
@@ -51,3 +56,6 @@
 		{% endfor %}
 	</div>
 </div>
+
+
+

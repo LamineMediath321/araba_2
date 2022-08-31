@@ -214,5 +214,6 @@ class AnnonceRepository extends ServiceEntityRepository
 
         return $query->getQuery()->getResult();
     }
+
     //End of user
 }
