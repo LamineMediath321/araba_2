@@ -193,7 +193,7 @@
         }
 
         if (viewMode == 'grid_4') {
-            parentsDiv.children().addClass('col-lg-3 col-md-4 col-sm-6').removeClass('col-lg-4 col-cust-5 col-12');
+            parentsDiv.children().addClass('col-lg-3 col-md-3 col-sm-6').removeClass('col-lg-4 col-cust-5 col-12');
         }
 
         if (viewMode == 'grid_list') {
