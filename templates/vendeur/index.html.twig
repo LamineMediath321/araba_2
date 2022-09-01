@@ -348,7 +348,7 @@
 											{% endif %}
 										</div>
 										<div class="add_to_cart">
-											{% if like.annonce.isVendu and annonce.isUptodate and annonce.isPaye %}
+											{% if like.annonce.isVendu and like.annonce.isUptodate and like.annonce.isPaye %}
 												<a class="btn btn-info" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="left">
 													Vendue
 												</a>

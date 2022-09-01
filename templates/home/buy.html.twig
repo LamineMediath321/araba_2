@@ -164,8 +164,12 @@
 																	</a>
 																</li>
 																<li class="compare">
-																	<a data-tippy="Favoris" href="#" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="left">
+																	<a class="js-like" data-tippy="Favoris" href="{{path('app_favoris',{'slug':annonce.slug})}}" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="left">
+																	{% if app.user and annonce.isLikedByUser(app.user) %}
+																		<i class="fa fa-heart"></i>
+																	{% else %}
 																		<i class="icon-heart icons"></i>
+																	{% endif %}
 																	</a>
 																</li>
 															</ul>
@@ -262,8 +266,12 @@
 													</li>
 												{% endif %}
 												<li class="compare">
-													<a data-tippy="Aimer" href="#" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="left">
-														<i class="icon-heart icons"></i>
+													<a class="js-like" data-tippy="Favoris" href="{{path('app_favoris',{'slug':annonce.slug})}}" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="left">
+													{% if app.user and annonce.isLikedByUser(app.user) %}
+															<i class="fa fa-heart"></i>
+														{% else %}
+															<i class="icon-heart icons"></i>
+													{% endif %}
 													</a>
 												</li>
 											</ul>
@@ -383,6 +391,9 @@
 		<script src="{{asset('assets/js/jquery-ui.min.js')}}"></script>
 		<script src="{{asset('assets/js/jquery.magnific-popup.min.js')}}"></script>
 		<script src="{{asset('assets/js/main.js')}}"></script>
+		<script src="{{asset('assets/js/like/axios.js')}}"></script>
+		<script src="{{asset('assets/js/like/like.js')}}"></script>
+		<script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 
 	{% endblock %}
 {% endblock %}

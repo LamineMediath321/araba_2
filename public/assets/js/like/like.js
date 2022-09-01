@@ -7,23 +7,31 @@ function onClickBtnLike(event) {
     y: 'top',
   }
 });
-
+ 
 // Display an error notification
     event.preventDefault();
     const url = this.href;
     const icone = this.querySelector('i');
+    
     // console.log(icone.classList.value);
 
     axios.get(url).then(function (response) {
         if (icone.classList.value=="icon-heart icons") {
             icone.classList.value = "fa fa-heart";
-            notyf.success('Ajouter dans vos fovoris');
+            notyf.success('Ajouter dans vos fovoris 💖');
+        }
+        else if(icone.classList.value=="fa fa-heart"){
+           icone.classList.value = "icon-heart icons";
+           notyf.error('Supprimer de vos fovoris 💔');
+        }
+        else if(icone.classList.value=="ion-ios-heart"){    
+            icone.classList.value="ion-ios-heart text-danger";
+            notyf.success('Ajouter dans vos fovoris 💖');
         }
         else {
-           icone.classList.value = "icon-heart icons";
-           notyf.error('Supprimer de vos fovoris');
+            icone.classList.value="ion-ios-heart";
+            notyf.error('Supprimer de vos fovoris 💔');
         }
-        console.log(icone.classList.value)
     }).catch(function (error) {
         if (error.response.status === 403) {
             // window.alert('Vous n\'êtes pas connecté');

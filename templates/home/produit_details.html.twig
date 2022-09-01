@@ -120,8 +120,12 @@
 													<i class="fa-solid fa-store"></i>
 												</a>
 											{% endif %}
-											<a class="wishlist" href="#">
-												<i class="ion-ios-heart"></i>
+											<a class="wishlist js-like" href="{{path('app_favoris',{'slug':annonce.slug})}}">
+												{% if app.user and annonce.isLikedByUser(app.user) %}
+													<i class="ion-ios-heart text-danger"></i>
+												{% else %}
+													<i class="ion-ios-heart"></i>
+												{% endif %}
 											</a>
 										</div>
 									</div>
@@ -165,8 +169,8 @@
 				</div>
 				<div class="text-center mt-5">
 					<a href="" class="btn btn-light">
-						<i class="fa-solid fa-bell-slash"></i>
-						Signaler le vendeur</a>
+						<i class="fas fa-microphone-lines-slash"></i>
+						Signaler l'annonce</a>
 				</div>
 			</section>
 			<!--product details end-->
@@ -307,8 +311,12 @@
 													</a>
 												</li>
 												<li class="compare">
-													<a data-tippy="Favoris" href="#" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="left">
-														<i class="icon-heart icons"></i>
+													<a class="js-like" data-tippy="Favoris" href="{{path('app_favoris',{'slug':annonce.slug})}}" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="left">
+														{% if app.user and annonce.isLikedByUser(app.user) %}
+															<i class="fa fa-heart"></i>
+														{% else %}
+															<i class="icon-heart icons"></i>
+														{% endif %}
 													</a>
 												</li>
 											</ul>
@@ -367,5 +375,8 @@
 		<script src="{{asset('assets/js/jquery-ui.min.js')}}"></script>
 		<script src="{{asset('assets/js/jquery.magnific-popup.min.js')}}"></script>
 		<script src="{{asset('assets/js/main.js')}}"></script>
+		<script src="{{asset('assets/js/like/axios.js')}}"></script>
+		<script src="{{asset('assets/js/like/like.js')}}"></script>
+		<script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 	{% endblock %}
 {% endblock %}
