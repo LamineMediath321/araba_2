@@ -5190,6 +5190,25 @@ textarea:-ms-input-placeholder {
   }
 }
 
+.edit{
+  margin-top:140px;
+}
+@media only screen and (max-width: 575px) {
+  .edit {
+      margin-top:5px;
+  }
+}
+
+.profil{
+  margin-top:140px;
+}
+@media only screen and (max-width: 575px) {
+  .profil {
+      margin-top:5px;
+      vertical-align: middle;
+  }
+}
+
 .grid_list .single_product:hover .action_links {
   transform: inherit;
 }

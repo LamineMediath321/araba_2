@@ -1,0 +1,19 @@
+vich_uploader:
+  db_driver: orm
+
+  mappings:
+    user_image:
+      uri_prefix: /uploads/users
+      upload_destination: "%kernel.project_dir%/public/uploads/users"
+      namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+      delete_on_update: true
+      delete_on_remove: true
+
+    boutique_image:
+      uri_prefix: /uploads/boutiques
+      upload_destination: "%kernel.project_dir%/public/uploads/boutique"
+      namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+      delete_on_update: true
+      delete_on_remove: true

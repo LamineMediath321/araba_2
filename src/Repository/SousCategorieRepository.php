@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Categorie;
 use App\Entity\SousCategorie;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
@@ -43,6 +44,16 @@ class SousCategorieRepository extends ServiceEntityRepository
         if ($flush) {
             $this->_em->flush();
         }
+    }
+
+    public function findByCountryOrderedByAscName(Categorie $categorie): array
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.categorie = :categorie')
+            ->setParameter('categorie', $categorie)
+            ->orderBy('s.libelle', 'ASC')
+            ->getQuery()
+            ->getResult();
     }
 
     // /**

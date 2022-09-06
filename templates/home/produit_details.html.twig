@@ -7,36 +7,36 @@
 	<div class="mt-2 shop_section">
 
 		<div class="col-8 mx-auto">
-			{#  #}
-			<!--breadcrumbs area end-->
-				<div class="mt-2 card mb-3" style="max-width: 540px;"> <div class="row g-0">
+			
+			<div class="container mb-2">
+				<div class="row">
+					<strong class="text-info">Nom user: {{annonce.user.getFullName}} or Pro</strong>
+					</class>
 					<div class="col-md-4">
-						<img src="..." class="img-fluid rounded-start" alt="...">
+						<div class="imgAbt">
+							<img src="{{ (annonce.user.imageName ? vich_uploader_asset(annonce.user) : asset('images/bg-8.jpg'))|imagine_filter('squared_thumbnail_user') }}">
+						</div>
 					</div>
 					<div class="col-md-6">
-						<div class="card-body">
-							<h4 class="card-title">
-								Nom User or Pro
-							</h4>
-							<strong class="card-text">Nombre d'annonces
-							</strong>
+						<h5 class="card-text">Nombre d'annonces 23</h5>
 							<p class="card-text">
 								<small class="text-muted">Membre
 									{{annonce.user.createdAt|ago(locale='fr')}}
 								</small>
 							</p>
-						</div>
 					</div>
-					{% if annonce.isPro %}
-						<div class="d-flex col-2">
-							<a href="#" data-tippy="Pro" class="btn-primary" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="right">
-								<i class="fa-solid fa-store"></i>
-							</a>
-						</div>
-					{% endif %}
+					<div class="col-md-2">
+						{% if annonce.isPro %}
+							<div class="d-flex col-2">
+								<a href="#" data-tippy="Pro" class="btn-primary" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="right">
+									<i class="fa-solid fa-store"></i>
+								</a>
+							</div>
+						{% endif %}
+					</div>
+					
 				</div>
 			</div>
-
 
 			<!--product details start-->
 			<section class="product_details mb-25">

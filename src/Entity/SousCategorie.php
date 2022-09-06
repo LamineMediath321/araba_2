@@ -35,10 +35,14 @@ class SousCategorie
     #[ORM\Column(length: 255, unique: true)]
     private ?string $slug = null;
 
+    #[ORM\OneToMany(mappedBy: 'categorie', targetEntity: SalleExposition::class)]
+    private Collection $boutiques;
+
     public function __construct()
     {
         $this->annonces = new ArrayCollection();
         $this->salleExpositions = new ArrayCollection();
+        $this->boutiques = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -152,5 +156,35 @@ class SousCategorie
         if (!$this->slug || '-' === $this->slug) {
             $this->slug = (string) $slugger->slug((string) $this)->lower();
         }
+    }
+
+    /**
+     * @return Collection<int, SalleExposition>
+     */
+    public function getBoutiques(): Collection
+    {
+        return $this->boutiques;
+    }
+
+    public function addBoutique(SalleExposition $boutique): self
+    {
+        if (!$this->boutiques->contains($boutique)) {
+            $this->boutiques->add($boutique);
+            $boutique->setCategorie($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBoutique(SalleExposition $boutique): self
+    {
+        if ($this->boutiques->removeElement($boutique)) {
+            // set the owning side to null (unless already changed)
+            if ($boutique->getCategorie() === $this) {
+                $boutique->setCategorie(null);
+            }
+        }
+
+        return $this;
     }
 }

@@ -7,6 +7,7 @@ use App\Repository\InfoPersoRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: InfoPersoRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class InfoPerso
 {
     use Timestampable;
@@ -64,4 +65,9 @@ class InfoPerso
 
         return $this;
     }
+
+    // public function __toString(): string
+    // {
+    //     return $this->telephone;
+    // }
 }

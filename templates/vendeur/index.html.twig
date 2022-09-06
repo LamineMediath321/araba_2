@@ -7,10 +7,10 @@
 
 
 	<div class='col-8 mx-auto mb-118'>
-		<div class="shadow mb-5 bg-white rounded" style="max-width: 840px;margin-top:200px;">
+		<div class="shadow mb-5 shadow-lg p-3 bg-white rounded profil" style="max-width: 840px;">
 			<div class="row g-3">
 				<div class="col-md-2">
-					<img src="https://via.placeholder.com/340x232/FF8C00/000000" class="img-fluid rounded-circle" alt="..." style="border-radius: 50%;width: 100px;height:100px; border: 3px solid #fff;box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)">
+					<img src="{{ (app.user.imageName ? vich_uploader_asset(app.user) : asset('images/gravatar.png'))|imagine_filter('squared_thumbnail_min') }}" class="rounded-circle shadow avatar" alt="..." style="border-radius: 50%;width: 100px;height:100px; border: 3px solid #fff;box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)">
 				</div>
 				<div class="col-md-3">
 					<div class="card-body">
@@ -19,10 +19,10 @@
 							<i class="fa-solid fa-location-dot"></i>
 							{{app.user.adresseUser.pays}}
 						</p>
-						<p>
+						<a href="{{path('app_user')}}">
 							<i class="fa-solid fa-gears"></i>
 							Modifier votre profil
-						</p>
+						</a>
 						<p class="card-text">
 							<small class="text-muted">Membre
 								{{app.user.createdAt|ago(locale="fr")}}</small>
@@ -31,12 +31,13 @@
 				</div>
 				<div class="col-7 mt-5">
 					Vendez plus vite grâce à nos abonnements
-					<a href="" class="btn btn-success">Découvrir</a>
+					<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+						Découvrir
+					</button>				
 				</div>
 			</div>
 		</div>
-
-
+ 
 		<nav>
 			<div class="nav nav-tabs" id="nav-tab" role="tablist">
 				<button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Annonces</button>
@@ -381,18 +382,23 @@
 		</div>
 	</div>
 
+	<!-- Modal -->
+	{{ include('layouts/partials/_modal.price.html.twig') }}
+	
 	<script src="{{asset('assets/js/vendor/jquery-3.4.1.min.js')}}"></script>
-	<script src="{{asset('assets/js/slick.min.js')}}"></script>
-	<script src="{{asset('assets/js/wow.min.js')}}"></script>
-	<script src="{{asset('assets/js/jquery.scrollup.min.js')}}"></script>
-	<script src="{{asset('assets/js/images-loaded.min.js')}}"></script>
-	<script src="{#{asset('assets/js/isotope.pkgd.min.js')}#}"></script>
-	<script src="{{asset('assets/js/jquery.nice-select.js')}}"></script>
-	<script src="{{asset('assets/js/tippy-bundle.umd.js')}}"></script>
-	<script src="{{asset('assets/js/jquery-ui.min.js')}}"></script>
-	<script src="{{asset('assets/js/jquery.magnific-popup.min.js')}}"></script>
-	<script src="{{asset('assets/js/main.js')}}"></script>
-	{{ encore_entry_script_tags('notyf') }}
-
+		<script src="{{asset('assets/js/vendor/popper.js')}}"></script>
+		<script src="{{asset('assets/js/vendor/bootstrap.min.js')}}"></script>
+		<script src="{{asset('assets/js/slick.min.js')}}"></script>
+		<script src="{{asset('assets/js/wow.min.js')}}"></script>
+		<script src="{{asset('assets/js/images-loaded.min.js')}}"></script>
+		<script src="{#{asset('assets/js/isotope.pkgd.min.js')}#}"></script>
+		<script src="{{asset('assets/js/jquery.nice-select.js')}}"></script>
+		<script src="{{asset('assets/js/tippy-bundle.umd.js')}}"></script>
+		<script src="{{asset('assets/js/jquery-ui.min.js')}}"></script>
+		<script src="{{asset('assets/js/jquery.magnific-popup.min.js')}}"></script>
+		<script src="{{asset('assets/js/main.js')}}"></script>
+		<script src="{{asset('assets/js/like/axios.js')}}"></script>
+		<script src="{{asset('assets/js/like/like.js')}}"></script>
+		<script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 
 {% endblock %}
