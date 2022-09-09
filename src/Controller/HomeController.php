@@ -101,10 +101,16 @@ class HomeController extends AbstractController
         $annonce->setNbVus($annonce->getNbVus() + 1);
         $em->persist($annonce);
         $em->flush();
-        $this->addFlash("error", "Cette annonce a eu " . $annonce->getNbVus() . " vus");
+        $this->addFlash("success", "Cette annonce a eu " . $annonce->getNbVus() . " vues ✅");
         return $this->render('home/produit_details.html.twig', [
             'annonce' => $annonce,
             'similaires' => $annonRepo->findBySimilaire($annonce->getSousCategorie(), $annonce->getId())
         ]);
+    }
+
+    #[Route("/search", name: 'app_search')]
+    public function search(): Response
+    {
+        return $this->render('home/search.html.twig');
     }
 }

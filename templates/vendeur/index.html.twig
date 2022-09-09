@@ -29,12 +29,20 @@
 						</p>
 					</div>
 				</div>
-				<div class="col-7 mt-5">
+				{% if boutique %}
+					<div class="col-7 mt-5">
+						<a class="btn btn-primary" href="{{path('boutique_info',{'boutique':boutique.slug})}}">
+							Ma boutique
+						</a>				
+					</div>
+				{% else %}
+					<div class="col-7 mt-5">
 					Vendez plus vite grâce à nos abonnements
 					<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
 						Découvrir
 					</button>				
 				</div>
+				{% endif %}
 			</div>
 		</div>
  
@@ -380,7 +388,18 @@
 			</div>
 			<div class="tab-pane fade" id="nav-stat" role="tabpanel" aria-labelledby="nav-contact-tab">Stats</div>
 		</div>
+		<div class="jumbotron jumbotron shadow mb-5 shadow-lg p-3 col-8 mx-auto" style='background-image: url("images/bg-8.jpg");background-size: cover;'>
+			<a href="">
+				<div class="container">
+				<h2 class="display-4 text-white">Une boutique</h2>
+				<p class="lead">Faites un abonnnement pour vendre plus librement</p>
+			</div>
+			</a>
+		</div>
 	</div>
+
+
+
 
 	<!-- Modal -->
 	{{ include('layouts/partials/_modal.price.html.twig') }}

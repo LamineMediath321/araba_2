@@ -2,15 +2,18 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\Timestampable;
 use App\Repository\SalleExpositionRepository;
 use Symfony\Component\HttpFoundation\File\File;
-use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @Vich\Uploadable
  */
+#[UniqueEntity('slug')]
 #[ORM\HasLifecycleCallbacks]
 #[ORM\Entity(repositoryClass: SalleExpositionRepository::class)]
 class SalleExposition
@@ -39,6 +42,9 @@ class SalleExposition
 
     #[ORM\OneToOne(mappedBy: 'salle', cascade: ['persist', 'remove'])]
     private ?AdresseSalle $adresseSalle = null;
+
+    #[ORM\Column(length: 255, unique: true)]
+    private ?string $slug = null;
 
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
@@ -161,9 +167,27 @@ class SalleExposition
         return $this->imageFile;
     }
 
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
 
     public function __toString(): string
     {
-        return $this->nomSalle;
+        return $this->nomSalle . '-' . (string)$this->createdAt->format('Y-m-d H:i:s');
+    }
+
+    public function computeSlug(SluggerInterface $slugger)
+    {
+        if (!$this->slug || '-' === $this->slug) {
+            $this->slug = (string) $slugger->slug((string) $this)->lower();
+        }
     }
 }

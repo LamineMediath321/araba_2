@@ -7,6 +7,7 @@ use App\Entity\Categorie;
 use App\Entity\SalleExposition;
 use App\Entity\SousCategorie;
 use App\Repository\CategorieRepository;
+use App\Repository\SalleExpositionRepository;
 use Symfony\UX\Dropzone\Form\DropzoneType;
 use App\Repository\SousCategorieRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -25,14 +26,14 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 class BoutiqueController extends AbstractController
 {
     #[Route('/vendeur/boutique', name: 'app_boutique')]
-    public function create(CategorieRepository $categorie, CategorieRepository $cateRepo): Response
+    public function create(CategorieRepository $cateRepo): Response
     {
         return $this->render('boutique/index.html.twig', [
             'categories' => $cateRepo->findAll()
         ]);
     }
 
-    #[Route('/vendeur/boutique/{libelle}', name: 'boutique_details')]
+    #[Route('/vendeur/boutique/{libelle}', name: 'boutique_details', methods: ['GET', 'POST'])]
     public function after_categorie(
         Categorie $categorie,
         SousCategorieRepository $sousCatRepo,
@@ -100,9 +101,24 @@ class BoutiqueController extends AbstractController
             $manager->persist($adresse);
             $manager->persist($boutique);
             $manager->flush();
+
+            return $this->redirectToRoute('boutique_info', [
+                'boutique' => $boutique->getSlug()
+            ]);
         }
         return $this->renderForm('boutique/details.html.twig', [
             'form' => $form
+        ]);
+    }
+
+    #[Route('vendeur/shop/details/{boutique}', name: 'boutique_info', methods: 'GET')]
+    public function details_boutique(SalleExpositionRepository $boutiqueRepo, $boutique): Response
+    {
+        $boutique = $boutiqueRepo->findOneBy([
+            'slug' => $boutique
+        ]);
+        return $this->render('boutique/boutique.html.twig', [
+            'boutique' => $boutique
         ]);
     }
 }

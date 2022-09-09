@@ -43,6 +43,7 @@
         "symfony/twig-bundle": "6.0.*",
         "symfony/ux-autocomplete": "^2.4",
         "symfony/ux-dropzone": "^2.4",
+        "symfony/ux-live-component": "^2.4",
         "symfony/ux-twig-component": "^2.4",
         "symfony/validator": "6.0.*",
         "symfony/web-link": "6.0.*",

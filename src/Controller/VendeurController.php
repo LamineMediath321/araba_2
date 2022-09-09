@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Annonce;
 use App\Repository\AnnonceRepository;
 use App\Repository\LikeRepository;
+use App\Repository\SalleExpositionRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,9 +19,14 @@ class VendeurController extends AbstractController
     public function index(
         AnnonceRepository $annoRepo,
         LikeRepository $likeRepo,
+        SalleExpositionRepository $salleRepo,
         PaginatorInterface $paginator,
         Request $request
     ): Response {
+        //La boutique 
+        $boutique = $salleRepo->findOneBy([
+            'owner' => $this->getUser()
+        ]);
         $data = $annoRepo->findBy(
             ['user' => $this->getUser()],
             ['createdAt' => 'DESC']
@@ -50,6 +56,7 @@ class VendeurController extends AbstractController
             'vendu' => $annoRepo->countAnnoncesByUserVendu($this->getUser()) ?? 0,
             'expire' => $annoRepo->countAnnoncesByUserExpire($this->getUser()) ?? 0,
             'noPaye' => $annoRepo->countAnnoncesByUserNoPaye($this->getUser()) ?? 0,
+            'boutique' => $boutique,
         ]);
     }
 

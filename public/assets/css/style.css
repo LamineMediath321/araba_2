@@ -2481,6 +2481,11 @@ textarea:-ms-input-placeholder {
   transition-duration: 0.3s;
 }
 
+.bg-primary{
+   color: #6a7964;
+  border: inherit;
+}
+
 .btn-primary:focus {
   background: #6a7964;
   border: inherit;

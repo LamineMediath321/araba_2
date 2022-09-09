@@ -1,0 +1,58 @@
+<!-- product details start -->
+
+<section class="product_details mb-135">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-md-6">
+        <div class="product_zoom_gallery">
+          <div class="zoom_gallery_inner d-flex">
+            <div class="product_zoom_main_img">
+              <div class="product_zoom_thumb">
+                <img class="img-circle img-thumbnail" src="{{ (boutique.imageName ? vich_uploader_asset(boutique) : asset('images/placeholder.jpg'))|imagine_filter('squared_thumbnail_brand') }}" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6">
+        <div class="product_d_right">
+          <form action="#">
+            <div class="price_box">
+              <span class="current_price">{{ boutique.nomSalle }}</span>
+            </div>
+
+            <div class="product_ratting_review d-flex align-items-center">
+              <div class="product_review">
+                <ul class="d-flex">
+                  <li>4 reviews</li>
+                  <li>Write your review</li>
+                </ul>
+              </div>
+            </div>
+            <h1>Spéciliasée en {{ boutique.domaine.libelle }}</h1>
+            <div class="product_availalbe">
+              <ul class="d-flex">
+                <li>
+                  <i class="fas fa-calendar-check"></i> crée {{ boutique.createdAt|ago(locale = 'fr') }}
+                </li>
+                <li>
+                  Availalbe: <span class="stock">In Stock</span>
+                </li>
+              </ul>
+            </div>
+            <div class="product_desc">
+              <p>{{ boutique.description }}</p>
+            </div>
+
+            <div class="product_sku">
+              <p>
+                <span>Slug:</span> #{{ boutique.slug }}
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- product details end -->

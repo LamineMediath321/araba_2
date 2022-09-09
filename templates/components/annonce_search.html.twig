@@ -1,0 +1,10 @@
+{# templates/components/product_search.html.twig #}
+<div {{ attributes }}>
+  <input type="search" data-name="query" value="{{ query }}" />
+
+  <ul>
+    {% for annonce in this.getAnnonces %}
+      <li>{{ annonce.libelleAnnonce }}</li>
+    {% endfor %}
+  </ul>
+</div>
