@@ -22,7 +22,6 @@ class SearchComponent
 
     public function getAnnonces(): array
     {
-        // example method that returns an array of Products
         return $this->annonceRepository->search($this->query);
     }
 }

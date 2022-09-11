@@ -1,10 +1,7 @@
-{# templates/components/product_search.html.twig #}
-<div {{ attributes }}>
-  <input type="search" data-name="query" value="{{ query }}" />
+<div {{ attributes }} class="m-4">
+  <input type="search" name="query" value="{{ query }}" data-action="live#update" />
 
-  <ul>
-    {% for annonce in this.getAnnonces %}
-      <li>{{ annonce.libelleAnnonce }}</li>
-    {% endfor %}
-  </ul>
+  {% for annonce in this.annonces %}
+    <li>{{ annonce.libelleAnnonce }}</li>
+  {% endfor %}
 </div>

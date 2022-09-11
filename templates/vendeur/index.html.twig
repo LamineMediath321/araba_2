@@ -188,10 +188,12 @@
 							</div>
 						{% endfor %}
 						<div class="text-center mt-5">
-							<a href="#" class="btn btn-light">
-								<i class="fa-solid fa-bullhorn"></i>
-								Publier une annonce</a>
+								<a href="#" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#modalPublier">
+									<i class="fa-solid fa-bullhorn"></i>
+									Publier une annonce
+								</a>
 						</div>
+						
 						<div class="d-flex justify-content-center mt-5">
 							{% do annonces.setPageRange(2) %}
 							{{knp_pagination_render(annonces,'/layouts/partials/_pagination.html.twig')}}
@@ -201,9 +203,10 @@
 				{% else %}
 					<div class='alert alert-danger text-center'>Vous n'avez pas d'annonces</div>
 					<div class="text-center mt-5">
-						<a href="#" class="btn btn-light">
+						<a href="#" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#modalPublier">
 							<i class="fa-solid fa-bullhorn"></i>
-							Publier une annonce</a>
+							Publier une annonce
+						</a>
 					</div>
 				{% endif %}
 
@@ -404,20 +407,7 @@
 	<!-- Modal -->
 	{{ include('layouts/partials/_modal.price.html.twig') }}
 	
-	<script src="{{asset('assets/js/vendor/jquery-3.4.1.min.js')}}"></script>
-		<script src="{{asset('assets/js/vendor/popper.js')}}"></script>
-		<script src="{{asset('assets/js/vendor/bootstrap.min.js')}}"></script>
-		<script src="{{asset('assets/js/slick.min.js')}}"></script>
-		<script src="{{asset('assets/js/wow.min.js')}}"></script>
-		<script src="{{asset('assets/js/images-loaded.min.js')}}"></script>
-		<script src="{#{asset('assets/js/isotope.pkgd.min.js')}#}"></script>
-		<script src="{{asset('assets/js/jquery.nice-select.js')}}"></script>
-		<script src="{{asset('assets/js/tippy-bundle.umd.js')}}"></script>
-		<script src="{{asset('assets/js/jquery-ui.min.js')}}"></script>
-		<script src="{{asset('assets/js/jquery.magnific-popup.min.js')}}"></script>
-		<script src="{{asset('assets/js/main.js')}}"></script>
-		<script src="{{asset('assets/js/like/axios.js')}}"></script>
-		<script src="{{asset('assets/js/like/like.js')}}"></script>
-		<script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+	
+	
 
 {% endblock %}

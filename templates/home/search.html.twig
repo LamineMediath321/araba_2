@@ -1,9 +1,85 @@
-{% extends 'base.html.twig' %}
+<!DOCTYPE html>
 
-{% block title %}
-  Hello BlogController!
-{% endblock %}
+<html lang="en">
+  <head>
+    <!--                                       [if IE]>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <![endif]                                       -->
+    <meta charset="utf-8" />
+    <title>JavaScript Load Image</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--                                       
+      Jcrop is not required by JavaScript Load Image, but included for the demo
+                                           -->
+    <link rel="stylesheet" href="assets/css/atelier/jquery.Jcrop.css" />
+    <link rel="stylesheet" href="assets/css/atelier/demo.css" />
+  </head>
+  <body>
+    <h1>Edit Image Salle</h1>
 
-{% block body %}
-  <div style="margin-top: 200px;">{{ component('annonce_search') }}</div>
-{% endblock %}
+    <h2>Fichier input</h2>
+    <p>
+      <label for="file-input">Selectionner un fichier image</label>
+      <input type="file" id="file-input" />
+    </p>
+    <p>
+      Ou <strong>drag &amp; drop</strong>
+      un fichier image sur cette page Web.
+    </p>
+    <p>
+      <label for="orientation">Orientation:</label>
+      <select id="orientation">
+        <option value="-1">non défini : valeur par défaut du navigateur</option>
+        <option value="0" selected>Automatique</option>
+        <option value="1">1: Original</option>
+        <option value="2">2: horizontal</option>
+        <option value="3">3: Rotation à 180° CCW</option>
+        <option value="4">4: Vertical</option>
+        <option value="5">5: vertical + Rotation à 90° CW</option>
+        <option value="6">6: Rotation 90° CW</option>
+        <option value="7">7: Horizontal + Rotation à 90° CW</option>
+        <option value="8">8: Rotation à 90° CCW</option>
+      </select>
+    </p>
+    <p>
+      <input type="checkbox" id="image-smoothing" checked />
+      <label for="image-smoothing">Image smoothing</label>
+    </p>
+    <h2>Result</h2>
+    <p id="actions" style="display: none;">
+      <button type="button" id="edit">Edit</button>
+      <button type="submit" id="crop">Crop</button>
+      <button type="reset" id="cancel">Cancel</button>
+    </p>
+    <figure id="result">
+      <figcaption style="display: none;">
+        Loading images from File objects requires support for the
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/URL">URL</a>
+        or
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileReader">FileReader</a>
+        API.
+      </figcaption>
+    </figure>
+    <div id="meta" style="display: none;">
+      <h3>Image metadata</h3>
+      <figure id="thumbnail" style="display: none;"></figure>
+    </div>
+    <script src="assets/js/atelier/canvas-to-blob.js"></script>
+    <script src="assets/js/atelier/load-image.js"></script>
+    <script src="assets/js/atelier/load-image-scale.js"></script>
+    <script src="assets/js/atelier/load-image-meta.js"></script>
+    <script src="assets/js/atelier/load-image-fetch.js"></script>
+    <script src="assets/js/atelier/load-image-orientation.js"></script>
+    <script src="assets/js/atelier/load-image-exif.js"></script>
+    <script src="assets/js/atelier/load-image-exif-map.js"></script>
+    <script src="assets/js/atelier/load-image-iptc.js"></script>
+    <script src="assets/js/atelier/load-image-iptc-map.js"></script>
+    <!--                                       
+      jQuery and Jcrop are not required by JavaScript Load Image,
+      but included for the demo
+                                           -->
+    <script src="assets/js/atelier/jquery.js"></script>
+    <script src="assets/js/atelier/jquery.Jcrop.js"></script>
+    <script src="assets/js/atelier/demo.js"></script>
+  </body>
+</html>

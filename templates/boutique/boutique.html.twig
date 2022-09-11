@@ -54,9 +54,11 @@
                             <div class="tab-pane fade show active" id="info" role="tabpanel" >
                                 <div class="product_info_content">
                                      {#Component for boutique#}
-		                                  {{ component('boutique.component',{ boutique: boutique })}}
+		                                   {{ component('edit_boutique', { boutique: boutique }) }}
 		                                  {#end of Component for boutique#}
                                 </div>
+                                {# {{ form(form) }} #}
+
                             </div>
                             <div class="tab-pane fade" id="reviews" role="tabpanel" >
                                 <div class="reviews_wrapper">
@@ -381,22 +383,6 @@
         </div>
     </section>
     <!--product area end-->
+ 
 
-
-  {% block javascript %}
-		<script src="{{asset('assets/js/vendor/jquery-3.4.1.min.js')}}"></script>
-		<script src="{{asset('assets/js/vendor/popper.js')}}"></script>
-		<script src="{{asset('assets/js/vendor/bootstrap.min.js')}}"></script>
-		<script src="{{asset('assets/js/slick.min.js')}}"></script>
-		<script src="{{asset('assets/js/wow.min.js')}}"></script>
-		<script src="{{asset('assets/js/images-loaded.min.js')}}"></script>
-		<script src="{#{asset('assets/js/isotope.pkgd.min.js')}#}"></script>
-		<script src="{{asset('assets/js/jquery.nice-select.js')}}"></script>
-		<script src="{{asset('assets/js/tippy-bundle.umd.js')}}"></script>
-		<script src="{{asset('assets/js/jquery-ui.min.js')}}"></script>
-		<script src="{{asset('assets/js/jquery.magnific-popup.min.js')}}"></script>
-		<script src="{{asset('assets/js/main.js')}}"></script>
-		<script src="{{asset('assets/js/like/axios.js')}}"></script>
-		<script src="{{asset('assets/js/like/like.js')}}"></script>
-  {% endblock %}
 {% endblock %}

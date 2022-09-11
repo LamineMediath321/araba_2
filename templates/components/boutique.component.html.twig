@@ -16,40 +16,37 @@
       </div>
       <div class="col-lg-6 col-md-6">
         <div class="product_d_right">
-          <form action="#">
-            <div class="price_box">
-              <span class="current_price">{{ boutique.nomSalle }}</span>
-            </div>
-
-            <div class="product_ratting_review d-flex align-items-center">
-              <div class="product_review">
-                <ul class="d-flex">
-                  <li>4 reviews</li>
-                  <li>Write your review</li>
-                </ul>
-              </div>
-            </div>
-            <h1>Spéciliasée en {{ boutique.domaine.libelle }}</h1>
-            <div class="product_availalbe">
+          <div class="price_box">
+            <span class="current_price">{{ boutique.nomSalle }}</span>
+          </div>
+          <div class="product_ratting_review d-flex align-items-center">
+            <div class="product_review">
               <ul class="d-flex">
-                <li>
-                  <i class="fas fa-calendar-check"></i> crée {{ boutique.createdAt|ago(locale = 'fr') }}
-                </li>
-                <li>
-                  Availalbe: <span class="stock">In Stock</span>
-                </li>
+                <li>4 reviews</li>
+                <li>Write your review</li>
               </ul>
             </div>
-            <div class="product_desc">
-              <p>{{ boutique.description }}</p>
-            </div>
+          </div>
+          <h1>Spéciliasée en {{ boutique.domaine.libelle }}</h1>
+          <div class="product_availalbe">
+            <ul class="d-flex">
+              <li>
+                <i class="fas fa-calendar-check"></i> crée {{ boutique.createdAt|ago(locale = 'fr') }}
+              </li>
+              <li>
+                Availalbe: <span class="stock">In Stock</span>
+              </li>
+            </ul>
+          </div>
+          <div class="product_desc">
+            <p>{{ boutique.description }}</p>
+          </div>
 
-            <div class="product_sku">
-              <p>
-                <span>Slug:</span> #{{ boutique.slug }}
-              </p>
-            </div>
-          </form>
+          <div class="product_sku">
+            <p>
+              <span>Slug:</span> #{{ boutique.slug }}
+            </p>
+          </div>
         </div>
       </div>
     </div>

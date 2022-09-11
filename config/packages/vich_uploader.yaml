@@ -12,7 +12,7 @@ vich_uploader:
 
     boutique_image:
       uri_prefix: /uploads/boutiques
-      upload_destination: "%kernel.project_dir%/public/uploads/boutique"
+      upload_destination: "%kernel.project_dir%/public/uploads/boutiques"
       namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
 
       delete_on_update: true

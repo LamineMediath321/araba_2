@@ -6,6 +6,7 @@ use App\Entity\AdresseSalle;
 use App\Entity\Categorie;
 use App\Entity\SalleExposition;
 use App\Entity\SousCategorie;
+use App\Form\BoutiqueType;
 use App\Repository\CategorieRepository;
 use App\Repository\SalleExpositionRepository;
 use Symfony\UX\Dropzone\Form\DropzoneType;
@@ -13,11 +14,9 @@ use App\Repository\SousCategorieRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -48,6 +47,8 @@ class BoutiqueController extends AbstractController
             ->add('domaine', EntityType::class, [
                 'class' => SousCategorie::class,
                 'choices' => $sousCategories,
+                'autocomplete' => true,
+                'placeholder' => 'chercher'
             ])
             ->add('imageFile', DropzoneType::class, [
                 'attr' => [
@@ -117,8 +118,31 @@ class BoutiqueController extends AbstractController
         $boutique = $boutiqueRepo->findOneBy([
             'slug' => $boutique
         ]);
-        return $this->render('boutique/boutique.html.twig', [
-            'boutique' => $boutique
+        $form = $this->createForm(BoutiqueType::class, $boutique);
+        return $this->renderForm('boutique/boutique.html.twig', [
+            'boutique' => $boutique,
+            'form' => $form
+        ]);
+    }
+
+    #[Route('/vendeur/shop/{boutique}', name: 'app_edit_image')]
+    public function edit_image_boutique(
+        SalleExposition $boutique,
+        Request $request,
+        EntityManagerInterface $manager
+    ): Response {
+        $form = $this->createForm(BoutiqueType::class, $boutique);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager->persist($boutique);
+            $manager->flush();
+            return $this->redirectToRoute('boutique_info', [
+                'boutique' => $boutique->getSlug()
+            ]);
+        }
+        return $this->renderForm('boutique/edit.html.twig', [
+            'boutique' => $boutique,
+            'form' => $form,
         ]);
     }
 }

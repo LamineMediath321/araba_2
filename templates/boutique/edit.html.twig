@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <!--                                                                                                   [if IE]>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <![endif]                                                                                                   -->
+    <meta charset="utf-8" />
+    <title>JavaScript Load Image</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="{{ asset('assets/css/atelier/jquery.Jcrop.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/atelier/demo.css') }}" />
+    {{ encore_entry_link_tags('app') }}
+  </head>
+  <body>
+    <h1 class="text-center">Edit Image Salle</h1>
+
+    <h2>Fichier input</h2>
+    {{ form_start(form) }}
+    <div class="row col-10 mx-auto">
+      <div class="col-4">
+        <p>
+          {{ form_label(form.imageFile) }}
+          {# <label for="file-input">Selectionner un fichier image</label> #}
+          {{ form_widget(form.imageFile) }}
+          {# <input type="file" id="file-input" value="{{ boutique.imageName }}" /> #}
+        </p>
+        <p>
+          Ou <strong>drag &amp; drop</strong>
+          un fichier image sur cette page Web.
+        </p>
+        <p>
+          <label for="orientation">Orientation:</label>
+          <select id="orientation">
+            <option value="-1">non défini : valeur par défaut du navigateur</option>
+            <option value="0" selected>Automatique</option>
+            <option value="1">1: Original</option>
+            <option value="2">2: horizontal</option>
+            <option value="3">3: Rotation à 180° CCW</option>
+            <option value="4">4: Vertical</option>
+            <option value="5">5: vertical + Rotation à 90° CW</option>
+            <option value="6">6: Rotation 90° CW</option>
+            <option value="7">7: Horizontal + Rotation à 90° CW</option>
+            <option value="8">8: Rotation à 90° CCW</option>
+          </select>
+        </p>
+      </div>
+      <div class="col-6" style="margin-left: 100px;">
+        <h2>Result</h2>
+        <p id="actions" style="display: none;">
+          <button type="button" id="edit">Editer</button>
+          <button type="submit" id="crop">Cropper</button>
+          <input class="btn btn-info" type="submit" value="Mettez à jour" />
+          {# <button type="reset" id="cancel">Fermer</button> #}
+        </p>
+        <figure id="result">
+          <figcaption style="display: none;">
+            Loading images from File objects requires support for the
+            <a href="https://developer.mozilla.org/en-US/docs/Web/API/URL">URL</a>
+            or
+            <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileReader">FileReader</a>
+            API.
+          </figcaption>
+        </figure>
+        <div id="meta" style="display: none;">
+          <h3>Image metadata</h3>
+          <figure id="thumbnail" style="display: none;"></figure>
+        </div>
+      </div>
+    </div>
+    {{ form_end(form) }}
+
+    <script src="{{ asset('assets/js/atelier/canvas-to-blob.js') }}"></script>
+    <script src="{{ asset('assets/js/atelier/load-image.js') }}"></script>
+    <script src="{{ asset('assets/js/atelier/load-image-scale.js') }}"></script>
+    <script src="{{ asset('assets/js/atelier/load-image-meta.js') }}"></script>
+    <script src="{{ asset('assets/js/atelier/load-image-fetch.js') }}"></script>
+    <script src="{{ asset('assets/js/atelier/load-image-orientation.js') }}"></script>
+    <script src="{{ asset('assets/js/atelier/load-image-exif.js') }}"></script>
+    <script src="{{ asset('assets/js/atelier/load-image-exif-map.js') }}"></script>
+    <script src="{{ asset('assets/js/atelier/load-image-iptc.js') }}"></script>
+    <script src="{{ asset('assets/js/atelier/load-image-iptc-map.js') }}"></script>
+    <!--                                                                                                   
+      jQuery and Jcrop are not required by JavaScript Load Image,
+      but included for the demo
+                                                                                                       -->
+    <script src="{{ asset('assets/js/atelier/jquery.js') }}"></script>
+    <script src="{{ asset('assets/js/atelier/jquery.Jcrop.js') }}"></script>
+    <script src="{{ asset('assets/js/atelier/demo.js') }}"></script>
+  </body>
+</html>

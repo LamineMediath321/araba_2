@@ -220,12 +220,15 @@ class AnnonceRepository extends ServiceEntityRepository
 
     public function search($query)
     {
-        if (empty($query)) return [];
-        $query = $this->createQueryBuilder('a');
-        $query->andWhere('a.libelleAnnonve LIKE : query');
-        $query->orderBy('a.createdAt', 'DESC');
-        $query->setParameter('query', '%' . $query . '%');
+        if (empty($query)) {
+            return [];
+        }
 
-        return $query->getQuery()->getResult();
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.libelleAnnonce LIKE :query')
+            ->setParameter('query', '%' . $query . '%')
+            ->orderBy('a.id', 'ASC')
+            ->getQuery()
+            ->getResult();
     }
 }
