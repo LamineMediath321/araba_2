@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Annonce;
 use App\Repository\AnnonceRepository;
 use App\Repository\CategorieRepository;
+use App\Repository\SousCategorieRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -35,48 +36,69 @@ class HomeController extends AbstractController
         AnnonceRepository $annonRepo,
         PaginatorInterface $paginator,
         Request $request,
-        CategorieRepository $cateRepo
+        CategorieRepository $cateRepo,
+        SousCategorieRepository $sousCateRepo,
     ): Response {
         if (!$slug) {
             $data = $annonRepo->findAllAnnonces();
             $tops = $annonRepo->findAllCategorieCime();
+            $sousCategories = $cateRepo->findAll();
         } else {
             switch ($slug) {
                 case 'Vehicules':
-                    $data = $annonRepo->findByCategorieAll('Vehicules');
-                    $tops = $annonRepo->findBySousCategorieCime('Vehicules');
+                    $data = $annonRepo->findByCategorieAll($slug);
+                    $tops = $annonRepo->findBySousCategorieCime($slug);
+                    $categorie = $cateRepo->findOneBy(['libelle' => $slug]);
+                    $sousCategories = $categorie->getSousCategories();
                     break;
                 case 'Immobilier':
-                    $data = $annonRepo->findByCategorieAll('Immobilier');
-                    $tops = $annonRepo->findBySousCategorieCime('Immobilier');
+                    $data = $annonRepo->findByCategorieAll($slug);
+                    $tops = $annonRepo->findBySousCategorieCime($slug);
+                    $categorie = $cateRepo->findOneBy(['libelle' => $slug]);
+                    $sousCategories = $categorie->getSousCategories();
                     break;
                 case 'Vetements':
-                    $data = $annonRepo->findByCategorieAll('Vetements');
-                    $tops = $annonRepo->findBySousCategorieCime('Vetements');
+                    $data = $annonRepo->findByCategorieAll($slug);
+                    $tops = $annonRepo->findBySousCategorieCime($slug);
+                    $categorie = $cateRepo->findOneBy(['libelle' => $slug]);
+                    $sousCategories = $categorie->getSousCategories();
                     break;
                 case 'Santé, beauté, cosmétiques':
-                    $data = $annonRepo->findByCategorieAll('Santé, beauté, cosmétiques');
-                    $tops = $annonRepo->findBySousCategorieCime('Santé, beauté, cosmétiques');
+                    $data = $annonRepo->findByCategorieAll($slug);
+                    $tops = $annonRepo->findBySousCategorieCime($slug);
+                    $categorie = $cateRepo->findOneBy(['libelle' => $slug]);
+                    $sousCategories = $categorie->getSousCategories();
                     break;
                 case 'Multimédia':
-                    $data = $annonRepo->findByCategorieAll('Multimédia');
-                    $tops = $annonRepo->findBySousCategorieCime('Multimédia');
+                    $data = $annonRepo->findByCategorieAll($slug);
+                    $tops = $annonRepo->findBySousCategorieCime($slug);
+                    $categorie = $cateRepo->findOneBy(['libelle' => $slug]);
+                    $sousCategories = $categorie->getSousCategories();
                     break;
                 case 'Foyer':
-                    $data = $annonRepo->findByCategorieAll('Foyer');
-                    $tops = $annonRepo->findBySousCategorieCime('Foyer');
+                    $data = $annonRepo->findByCategorieAll($slug);
+                    $tops = $annonRepo->findBySousCategorieCime($slug);
+                    $categorie = $cateRepo->findOneBy(['libelle' => $slug]);
+                    $sousCategories = $categorie->getSousCategories();
                     break;
                 case 'Sports':
-                    $data = $annonRepo->findByCategorieAll('Sports');
-                    $tops = $annonRepo->findBySousCategorieCime('Sports');
+                    $data = $annonRepo->findByCategorieAll($slug);
+                    $tops = $annonRepo->findBySousCategorieCime($slug);
+                    $categorie = $cateRepo->findOneBy(['libelle' => $slug]);
+                    $sousCategories = $categorie->getSousCategories();
                     break;
                 case "Offres d'Emploi":
-                    $data = $annonRepo->findByCategorieAll("Offres d'Emploi");
-                    $tops = $annonRepo->findBySousCategorieCime("Offres d'Emploi");
+                    $data = $annonRepo->findByCategorieAll($slug);
+                    $tops = $annonRepo->findBySousCategorieCime($slug);
+                    $categorie = $cateRepo->findOneBy(['libelle' => $slug]);
+                    $sousCategories = $categorie->getSousCategories();
                     break;
                 default:
                     $data = $annonRepo->findBySousCategorie($slug);
                     $tops = $annonRepo->findBySousCategorieCime($slug);
+                    $sousCategorie = $sousCateRepo->findOneBy(['slug' => $slug]);
+                    $categorie = $sousCategorie->getCategorie();
+                    $sousCategories = $categorie->getSousCategories();
                     break;
             }
         }
@@ -88,7 +110,8 @@ class HomeController extends AbstractController
                 12
             ),
             'categories' => $cateRepo->findAll(),
-            'tops' => $tops
+            'tops' => $tops,
+            'sousCategories' => $sousCategories ?? [],
         ]);
     }
 

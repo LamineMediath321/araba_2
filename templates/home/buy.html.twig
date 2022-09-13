@@ -128,6 +128,20 @@
 								Le marché de chez nous</p>
 						</div>
 					</div>
+					<section class="mb-5 rounded">
+						<div class="slider_area slick_slider_activation" data-slick='{"slidesToShow": 5,"slidesToScroll": 1,"arrows": true,"dots": false,"autoplay": false,"speed": 300,"infinite": false}'>
+							<div class="text-center text-primary">
+								<i class="fas fa-warehouse fa-3x"></i>
+								<p>Pro</p>
+							</div>
+							{% for sousCategorie in sousCategories %}
+							<div class="text-center ">
+								<i class="{{sousCategorie.icon}} fa-3x"></i>
+								<h6 class="fs-10" >{{sousCategorie.libelle}}</h6>
+							</div>
+							{% endfor %}
+						</div>
+					</section>
 					{% if tops %}
 						<!--top annonce start-->
 						<section class="product_area related_products mb-3">

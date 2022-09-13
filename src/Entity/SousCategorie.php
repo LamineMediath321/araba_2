@@ -38,6 +38,9 @@ class SousCategorie
     #[ORM\OneToMany(mappedBy: 'categorie', targetEntity: SalleExposition::class)]
     private Collection $boutiques;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $icon = null;
+
     public function __construct()
     {
         $this->annonces = new ArrayCollection();
@@ -184,6 +187,18 @@ class SousCategorie
                 $boutique->setCategorie(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getIcon(): ?string
+    {
+        return $this->icon;
+    }
+
+    public function setIcon(?string $icon): self
+    {
+        $this->icon = $icon;
 
         return $this;
     }

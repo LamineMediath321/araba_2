@@ -39,7 +39,7 @@ class AppFixtures extends Fixture
         $categories = [
             "Vehicules", "Immobilier", "Vetements",
             "Santé, beauté, cosmétiques",
-            "Multimédia", "Foyer", "Sports", "Offres d'Emploi"
+            "Multimédia", "Pour la maison", "Sports", "Emploi & services"
         ];
         //Les categories et ses sous categories
         for ($i = 0; $i < 8; $i++) {
@@ -59,7 +59,7 @@ class AppFixtures extends Fixture
                         ->setLibelle($vehicules[$j]);
                     $manager->persist($sous_categorie);
                     //Les annonces
-                    for ($k = 0; $k < 5; $k++) {
+                    for ($k = 0; $k < 3; $k++) {
                         $annonce = new Annonce;
                         $annonce->setUser($user)
                             ->setSousCategorie($sous_categorie)
@@ -104,7 +104,7 @@ class AppFixtures extends Fixture
                         ->setLibelle($immobiliers[$j]);
                     $manager->persist($sous_categorie);
                     //Les annonces
-                    for ($k = 0; $k < 5; $k++) {
+                    for ($k = 0; $k < 3; $k++) {
                         $annonce = new Annonce;
                         $annonce->setUser($user)
                             ->setSousCategorie($sous_categorie)
@@ -149,7 +149,7 @@ class AppFixtures extends Fixture
                         ->setLibelle($modes[$j]);
                     $manager->persist($sous_categorie);
                     //Les annonces
-                    for ($k = 0; $k < 5; $k++) {
+                    for ($k = 0; $k < 3; $k++) {
                         $annonce = new Annonce;
                         $annonce->setUser($user)
                             ->setSousCategorie($sous_categorie)
@@ -185,15 +185,15 @@ class AppFixtures extends Fixture
                 //Santé, beauté, cosmétiques
                 $santés = [
                     'Parfums', 'Bijoux & montres',
-                    'Produits cosmétiques', 'cosmétiques bio',
+                    'Produits cosmétiques', 'cosmétiques bio', 'Accessoires'
                 ];
-                for ($j = 0; $j < 4; $j++) {
+                for ($j = 0; $j < 5; $j++) {
                     $sous_categorie = new SousCategorie;
                     $sous_categorie->setCategorie($categorie)
                         ->setLibelle($santés[$j]);
                     $manager->persist($sous_categorie);
                     //Les annonces
-                    for ($k = 0; $k < 5; $k++) {
+                    for ($k = 0; $k < 3; $k++) {
                         $annonce = new Annonce;
                         $annonce->setUser($user)
                             ->setSousCategorie($sous_categorie)

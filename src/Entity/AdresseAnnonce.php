@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use App\Entity\Traits\Timestampable;
 use App\Repository\AdresseAnnonceRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\HasLifecycleCallbacks]
