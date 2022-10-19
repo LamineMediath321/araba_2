@@ -205,15 +205,15 @@
 
 
     /*blog Isotope activation*/
-    $('.blog_page_gallery').imagesLoaded(function () {
-        // init Isotope
-        var $grid = $('.blog_page_gallery').isotope({
-            itemSelector: '.gird_item',
-            percentPosition: true,
-            masonry: {
-                columnWidth: '.gird_item'
-            }
-        });
+    // $('.blog_page_gallery').imagesLoaded(function () {
+    //     // init Isotope
+    //     var $grid = $('.blog_page_gallery').isotope({
+    //         itemSelector: '.gird_item',
+    //         percentPosition: true,
+    //         masonry: {
+    //             columnWidth: '.gird_item'
+    //         }
+    //     });
 
         // filter items on button click
         $('.blog_messonry_button').on('click', 'button', function () {

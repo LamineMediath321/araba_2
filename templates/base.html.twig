@@ -46,7 +46,6 @@
 		<script src="{{asset('assets/js/slick.min.js')}}"></script>
 		<script src="{{asset('assets/js/wow.min.js')}}"></script>
 		<script src="{{asset('assets/js/jquery.scrollup.min.js')}}"></script>
-		<script src="{{asset('assets/js/images-loaded.min.js')}}"></script>
 		<script src="{#{asset('assets/js/isotope.pkgd.min.js')}#}"></script>
 		<script src="{{asset('assets/js/jquery.nice-select.js')}}"></script>
 		<script src="{{asset('assets/js/tippy-bundle.umd.js')}}"></script>
@@ -56,6 +55,17 @@
 		<script src="{{asset('assets/js/like/axios.js')}}"></script>
 		<script src="{{asset('assets/js/like/like.js')}}"></script>
 		<script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+     <script>
+        window.onload = () => {
+            // On va chercher la région
+            let categorie = document.querySelector("#annonce_form_categorie");
+            
+            categorie.addEventListener('change', function(){
+              console.log("helloe")
+                
+            });
+        }
+    </script>
     {% endblock %}
   </body>
 </html>

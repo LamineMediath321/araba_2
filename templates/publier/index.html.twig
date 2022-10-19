@@ -1,0 +1,170 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Hello PublierController!
+{% endblock %}
+
+{% block body %}
+  <div class="container-fluid" style="margin-top:200px;">
+    <div class="container">
+      <!-- Title -->
+      <div class="d-flex justify-content-between align-items-lg-center py-3 flex-column flex-lg-row">
+        <h2 class="h5 mb-3 mb-lg-0"><a href="../../pages/admin/customers.html" class="text-muted"><i class="bi bi-arrow-left-square me-2"></i></a> Créer une annonce</h2>
+      </div>
+
+      {# <!-- Main content -->
+      <div class="row">
+        {{ form_start(form) }}
+        <!-- Left side -->
+        <div class="col-lg-8 mx-auto">
+          <!-- Basic information -->
+          <div class="card mb-4">
+            <div class="card-body">
+              <h3 class="h6 mb-4">Ajouter des photos*(au moins une)</h3>
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="mb-3">{{ form_label(form.imageFile1) }}
+                    {{ form_widget(form.imageFile1) }}</div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="mb-3">{{ form_label(form.imageFile2) }}
+                    {{ form_widget(form.imageFile2) }}</div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="mb-3">{{ form_label(form.imageFile3) }}
+                    {{ form_widget(form.imageFile3) }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card mb-4">
+            <div class="card-body">
+              <h3 class="h6 mb-4">information de base</h3>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="mb-3">{{ form_label(form.libelleAnnonce) }}
+                    {{ form_widget(form.libelleAnnonce) }}</div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="mb-3">{{ form_label(form.prix) }}
+                    {{ form_widget(form.prix) }}</div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-10">
+                  <div class="mb-3">{{ form_label(form.description) }}
+                    {{ form_widget(form.description) }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Address -->
+          <div class="card mb-4">
+            <div class="card-body">
+              <h3 class="h6 mb-4"></h3>
+              <div class="mb-3">
+                <label class="form-label">Address Line 1</label>
+                {{ form_widget(form.categorie) }}<i class="fas fa-align-justify"></i>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Address Line 2</label>
+                <input type="text" class="form-control" />
+              {# </div> #}
+            </div>
+          </div>
+          {# <div class="card mb-4">
+            <div class="card-body">
+              <h3 class="h6 mb-4">Address</h3>
+              <div class="mb-3">
+                <label class="form-label">Address Line 1</label>
+                <input type="text" class="form-control" />
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Address Line 2</label>
+                <input type="text" class="form-control" />
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="mb-3">
+                    <label class="form-label">Country</label>
+                    <select class="select2 form-control select2-hidden-accessible" data-select2-placeholder="Select country" data-select2-id="select2-data-1-gy14" tabindex="-1" aria-hidden="true">
+                      <option data-select2-id="select2-data-3-ibs9"></option>
+                      <option value="AF">Afghanistan</option>
+                      <option value="BS">Bahamas</option>
+                      <option value="KH">Cambodia</option>
+                      <option value="DK">Denmark</option>
+                      <option value="TL">East Timor</option>
+                      <option value="GM">Gambia</option>
+                    </select><span class="select2 select2-container select2-container--bootstrap-5" dir="ltr" data-select2-id="select2-data-2-46y9" style="width: 391px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-vp8l-container" aria-controls="select2-vp8l-container"><span class="select2-selection__rendered" id="select2-vp8l-container" role="textbox" aria-readonly="true" title="Select country"><span class="select2-selection__placeholder">Select country</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="mb-3">
+                    <label class="form-label">State</label>
+                    <select class="select2 form-control select2-hidden-accessible" data-select2-placeholder="Select state" data-select2-id="select2-data-4-680y" tabindex="-1" aria-hidden="true">
+                      <option data-select2-id="select2-data-6-cshs"></option>
+                      <option value="AL">Alabama</option>
+                      <option value="CA">California</option>
+                      <option value="DE">Delaware</option>
+                      <option value="FL">Florida</option>
+                      <option value="GA">Georgia</option>
+                      <option value="HI">Hawaii</option>
+                      <option value="ID">Idaho</option>
+                      <option value="KS">Kansas</option>
+                    </select><span class="select2 select2-container select2-container--bootstrap-5" dir="ltr" data-select2-id="select2-data-5-np4c" style="width: 391px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-2fn7-container" aria-controls="select2-2fn7-container"><span class="select2-selection__rendered" id="select2-2fn7-container" role="textbox" aria-readonly="true" title="Select state"><span class="select2-selection__placeholder">Select state</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="mb-3">
+                    <label class="form-label">City</label>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="mb-3">
+                    <label class="form-label">ZIP code</label>
+                    <input type="text" class="form-control" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> #}
+        </div>
+        <!-- Right side -->
+        {{ form_end(form) }}
+      </div> #}
+    </div>
+  </div>
+
+  <style>
+    .body {
+      background: #eee;
+    }
+    
+    .card {
+      box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
+    }
+    
+    .card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      word-wrap: break-word;
+      background-color: #fff;
+      background-clip: border-box;
+      border: 0 solid rgba(0, 0, 0, 0.125);
+      border-radius: 1rem;
+    }
+    
+    .card-body {
+      -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+      flex: 1 1 auto;
+      padding: 1.5rem 1.5rem;
+    }
+  </style>
+
+   
+{% endblock %}
